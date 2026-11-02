@@ -20,7 +20,7 @@ main{max-width:1350px;margin:auto;padding:22px 16px 90px}.hero{display:grid;grid
 <body>
 <header>
  <div class="brand">ALMOGHANI <b>LIVE</b> <span class="tag">AG07</span></div>
- <div class="headtools"><a href="admin.html" class="btn small" style="text-decoration:none" aria-label="لوحة التحكم">⚙ لوحة التحكم</a><button id="refresh" class="btn small">↻ تحديث القنوات</button><button id="export" class="btn primary small" disabled>⬇ تصدير M3U مرتب</button></div>
+ <div class="headtools"><a href="admin.html" class="btn small" style="text-decoration:none" aria-label="لوحة التحكم">⚙ لوحة التحكم</a><button id="refresh" class="btn small" title="إعادة تحميل القنوات عند الطلب فقط">↻ تحديث يدوي</button><button id="export" class="btn primary small" disabled>⬇ تصدير M3U مرتب</button></div>
 </header>
 <main>
  <section class="hero">
@@ -29,7 +29,7 @@ main{max-width:1350px;margin:auto;padding:22px 16px 90px}.hero{display:grid;grid
    <div class="screen"><video id="video" controls playsinline webkit-playsinline preload="none"></video><div id="placeholder" class="placeholder"><div class="symbol">◉</div><h2>ALMOGHANI LIVE</h2><p>اختر أي قناة من الأسفل لعرض البث هنا. بعض القنوات لا تدعم التشغيل داخل المتصفح أو تكون محجوبة جغرافيًا.</p></div></div>
    <div class="playeractions"><button id="retry" class="btn small" disabled>↻ إعادة المحاولة</button><button id="nextSource" class="btn small" disabled>⟳ بث بديل</button></div>
   </div>
-  <div class="intro"><div><h1>قنواتنا <em>العربية مباشرة</em> 🇸🇦</h1><p>شاهد القنوات السعودية والخليجية والعربية، وابحث عن قناتك المفضلة وشغّلها داخل الموقع.</p></div><div class="stats"><div class="stat"><strong id="total">—</strong><span>القنوات المختلفة</span></div><div class="stat"><strong id="arabicTotal">—</strong><span>القنوات العربية</span></div></div><div class="note" id="updated">ترتيب القنوات جاهز للتحميل...</div></div>
+  <div class="intro"><div><h1>قنواتنا <em>العربية مباشرة</em> 🇸🇦</h1><p>شاهد القنوات السعودية والخليجية والعربية، وابحث عن قناتك المفضلة وشغّلها داخل الموقع.</p></div><div class="stats"><div class="stat"><strong id="total">—</strong><span>القنوات المختلفة</span></div><div class="stat"><strong id="arabicTotal">—</strong><span>القنوات العربية</span></div></div><div class="note" id="updated">ترتيب القنوات جاهز للتحميل...</div><div class="note">🔒 لا يوجد تحديث تلقائي للقنوات أثناء التصفح. يمكنك تحديثها بالزر العلوي وقتما تشاء.</div></div>
  </section>
  <div id="topAnnouncement" class="notice" hidden></div>
  <div id="status" class="notice" role="status">يتم الاتصال بمصدر القنوات...</div>
