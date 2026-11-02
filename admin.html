@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090c14"><title>لوحة التحكم الشاملة | ALMOGHANI LIVE</title>
+<style>
+:root{color-scheme:dark;--bg:#090d17;--panel:#121b2b;--tile:#182335;--line:#344258;--text:#eff6ff;--muted:#9aafc9;--cyan:#32dceb;--gold:#dcc08a;--red:#ff7d87}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse 850px 320px at 60% 0,#15384c 0,transparent 75%),var(--bg);color:var(--text);font:14px/1.7 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}button:disabled{opacity:.4;cursor:not-allowed}input,select,textarea{min-width:0;background:#0e1726;border:1px solid #45546b;border-radius:12px;padding:11px 12px;color:#fff;width:100%;outline:0}input:focus,textarea:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #2adce51c}textarea{resize:vertical;min-height:110px}input[type=color]{height:49px;padding:5px}input[type=checkbox]{height:18px;width:18px;accent-color:var(--cyan)}
+label{display:flex;flex-direction:column;gap:6px;color:#c8d8ed;font-size:13px;font-weight:650}small,.sub{color:var(--muted);font-size:12px}.wrapper{max-width:1440px;margin:auto;padding:17px 16px 90px}
+.top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:1px solid #294257;padding-bottom:15px;margin-bottom:20px}.brand{font-weight:900;font-size:22px;letter-spacing:.7px}.brand span{color:var(--gold)}.crumb{display:block;color:var(--muted);font-size:11px}.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#1b2a3e;border:1px solid #40536c;border-radius:12px;color:white;padding:10px 15px;font-weight:680;min-height:42px}.btn:hover{border-color:#36dfea;background:#253b4e}.btn.primary{background:linear-gradient(135deg,#188aa2,#0f526f);border-color:#20b7ce}.btn.gold{background:linear-gradient(135deg,#63502a,#46351d);border-color:#9e7b3b}.btn.danger{color:#ffc2c2;border-color:#72343d;background:#371c28}.btn.tiny{padding:5px 9px;min-height:32px;font-size:12px;border-radius:9px}.btn.ghost{background:transparent}
+.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:18px}.nav{position:sticky;top:15px;align-self:start;background:#101929;border:1px solid #304158;border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:5px}.nav button{text-align:right;background:transparent;border:1px solid transparent;border-radius:12px;padding:12px;color:#c3d7ed;cursor:pointer;font-weight:700}.nav button.active,.nav button:hover{background:#1b3449;color:#fff;border-color:#286b78}
+.panel{display:none}.panel.active{display:block}.heading h1{margin:0 0 3px;font-size:24px}.heading p{margin:0 0 20px;color:var(--muted)}
+.card{background:linear-gradient(135deg,#152132,#101827);border:1px solid #2e4156;border-radius:18px;padding:19px;margin-bottom:15px;box-shadow:0 12px 36px #0002}.card h2{font-size:18px;margin:0 0 10px}.card p{color:#c4d3e4;margin:6px 0 13px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:#111e2e;border:1px solid #365064;border-radius:17px;padding:19px}.stat strong{font-size:29px;color:var(--cyan);display:block}.stat span{font-size:12px;color:#bdd1e4}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}.wide{grid-column:1/-1}.actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:16px}.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap}.toolbar input{flex:1 1 170px;width:auto}.toolbar select{width:auto;min-width:140px}.list{display:flex;flex-direction:column;gap:9px;max-height:530px;overflow:auto;padding:2px}
+.item{display:flex;align-items:center;gap:11px;border:1px solid #34485c;background:#132034;border-radius:13px;padding:10px;min-width:0}.item:hover{border-color:#48758b}.item img{height:48px;width:48px;border-radius:10px;object-fit:contain;background:#070d17}.item .detail{flex:1;min-width:0}.item .detail strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item .detail small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.item .ops{display:flex;gap:5px;flex-wrap:wrap;max-width:300px}.pills{display:flex;gap:7px;flex-wrap:wrap}.pill{font-size:11px;border-radius:50px;border:1px solid #3a566c;padding:3px 9px;color:#aee6ee;background:#11283a}
+.notice{border:1px solid #476077;background:#183044;padding:12px 14px;border-radius:12px;margin:12px 0;color:#d5edff}.notice.warning{border-color:#956741;background:#362916;color:#ffdfb0}.note{line-height:1.95;color:#b1c7e2}.divider{border:0;border-top:1px solid #34445a;margin:19px 0}.preview{background:#0a1020;border:1px solid #42556c;border-radius:16px;padding:18px;box-shadow:inset 0 0 45px #13405e22}.preview h3{font-size:19px;margin:0;color:var(--cyan)}.preview p{color:#bfd0e3}.preview .tv{aspect-ratio:16/7;display:grid;place-items:center;max-width:460px;border-radius:15px;border:1px solid #496173;background:#030912;color:#83bacc;box-shadow:0 0 40px #10cbd91c}
+.gate{margin:65px auto;max-width:460px;text-align:center}.gate h1{margin-bottom:0}.gate .lock{font-size:48px;margin:8px}.gate input{text-align:center;letter-spacing:4px;font-size:23px}.gate .btn{width:100%}#workspace[hidden],#gate[hidden],#channelForm[hidden],#categoryForm[hidden]{display:none!important}
+#noticeBar{position:fixed;bottom:18px;left:18px;right:18px;max-width:640px;margin:auto;z-index:50;background:#0d3143;border:1px solid #3aa8b8;border-radius:14px;padding:14px 17px;box-shadow:0 15px 45px #0008;display:none;color:#e8fcff}#noticeBar.show{display:block}#noticeBar.bad{background:#421d29;border-color:#b65d70}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.nav{position:static;display:flex;flex-direction:row;overflow:auto;white-space:nowrap;gap:7px}.nav button{text-align:center;flex:0 0 auto}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.wrapper{padding:11px 9px 60px}.card{padding:13px}.fields,.fields.three{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:23px}.item{align-items:flex-start}.item img{height:40px;width:40px}.item .ops{max-width:130px}.top .brand{font-size:18px}.heading h1{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+ <header class="top">
+  <div class="brand">ALMOGHANI <span>LIVE</span><small class="crumb">لوحة الإدارة • AG07</small></div>
+  <div class="top-actions"><a class="btn ghost" href="./">↗ الموقع</a><button id="saveLocal" class="btn gold" type="button" hidden>💾 حفظ التعديلات</button><button id="topPublish" class="btn primary" type="button" hidden>🚀 نشر التعديلات</button></div>
+ </header>
+ <section id="gate" class="gate card">
+  <div class="lock">🔐</div><h1>لوحة تحكم الموقع</h1>
+  <p class="note">أدخل رمز اللوحة للمتابعة. هذا رمز عرض محلي فقط؛ نشر التغييرات العامة يتطلب صلاحية GitHub فعلية.</p>
+  <form id="gateForm"><label>رمز الدخول<input id="pin" type="password" inputmode="numeric" maxlength="20" autocomplete="off" required placeholder="● ● ● ● ● ●"></label><div class="actions"><button class="btn primary" type="submit">دخول لوحة التحكم</button></div></form>
+  <p id="pinError" style="color:#ffadb4"></p>
+ </section>
+ <div id="workspace" hidden>
+  <div class="layout">
+   <nav class="nav" aria-label="أقسام لوحة التحكم">
+    <button class="active" data-panel="dashboard">◫ الرئيسية</button>
+    <button data-panel="channels">📺 القنوات</button>
+    <button data-panel="categories">☷ التصنيفات</button>
+    <button data-panel="import">⬆ الاستيراد</button>
+    <button data-panel="featured">▶ المشغّل</button>
+    <button data-panel="appearance">🎨 المظهر</button>
+    <button data-panel="backups">📦 النسخ</button>
+    <button data-panel="publish">🚀 النشر</button>
+   </nav>
+   <div>
+    <section class="panel active" data-section="dashboard">
+     <div class="heading"><h1>إدارة ALMOGHANI LIVE</h1><p>التحكم في القنوات والتصميم من مكان واحد.</p></div>
+     <div class="stats"><div class="stat"><strong id="statAll">—</strong><span>إجمالي القنوات</span></div><div class="stat"><strong id="statCategories">—</strong><span>التصنيفات</span></div><div class="stat"><strong id="statAdded">—</strong><span>قنوات مضافة</span></div><div class="stat"><strong id="statDeleted">—</strong><span>قنوات محذوفة</span></div></div>
+     <div class="card"><h2>حالة التعديلات</h2><p id="draftState"></p><div class="pills"><span class="pill" id="loadedState">جارٍ تحميل القنوات</span><span class="pill">ALMOGHANI.NET</span></div><div class="actions"><button class="btn primary" data-goto="channels">إدارة القنوات</button><button class="btn" data-goto="appearance">تعديل التصميم</button><button class="btn gold" data-goto="publish">نشر للجميع</button></div></div>
+     <div class="notice warning">التعديل الذي تحفظه على هذا الجهاز يظهر لك فقط أولاً. ليظهر لكل زوار الموقع استخدم تبويب «النشر» وصلاحية GitHub، أو نزّل ملف الإعدادات وارفعه إلى المستودع.</div>
+    </section>
+    <section class="panel" data-section="channels">
+     <div class="heading"><h1>📺 إدارة القنوات</h1><p>إضافة وتعديل وحذف وترتيب القنوات وروابط البث البديلة والصور.</p></div>
+     <div class="card">
+      <div class="toolbar"><input id="channelSearch" placeholder="🔎 ابحث باسم القناة أو الدولة..." type="search"><select id="channelFilter"><option value="all">كل الأقسام</option></select><button class="btn primary" id="newChannel">＋ إضافة قناة</button><button class="btn danger" id="deleteAll">⌫ حذف جميع القنوات</button></div>
+      <div id="channelRows" class="list"></div><div class="actions"><button class="btn" id="moreChannels">عرض المزيد</button><span class="sub" id="channelCount"></span></div>
+     </div>
+     <form id="channelForm" class="card" hidden>
+      <h2 id="formHeading">إضافة قناة</h2><input type="hidden" id="channelKey">
+      <div class="fields">
+       <label>اسم القناة<input id="channelName" required maxlength="130"></label>
+       <label>الدولة (SA / AE / EG ...)<input id="channelCountry" value="SA" maxlength="20" required></label>
+       <label>التصنيف<select id="channelGroup" required></select></label>
+       <label>اللغة<input id="channelLanguage" value="ara" maxlength="32"></label>
+       <label class="wide">رابط بث HTTPS مباشر<input id="channelUrl" type="url" required placeholder="https://example.com/live.m3u8"></label>
+       <label class="wide">رابط شعار القناة HTTPS<input id="channelLogo" type="url" placeholder="https://example.com/logo.png"></label>
+       <label class="wide">روابط بث بديلة (رابط واحد في كل سطر)<textarea id="channelAlternates" rows="3" placeholder="https://example.com/backup.m3u8"></textarea></label>
+      </div>
+      <div class="actions"><button type="submit" class="btn primary">💾 حفظ القناة</button><button type="button" class="btn" id="cancelChannel">إلغاء</button></div>
+     </form>
+    </section>
+    <section class="panel" data-section="categories">
+     <div class="heading"><h1>☷ إدارة التصنيفات</h1><p>إنشاء أقسام وتغيير الأسماء وترتيبها وإخفاؤها.</p></div>
+     <div class="card"><div class="actions" style="margin-top:0"><button id="newCategory" class="btn primary">＋ إضافة قسم جديد</button></div><div id="categoryRows" class="list" style="margin-top:15px"></div></div>
+     <form id="categoryForm" class="card" hidden><h2>قسم جديد</h2><div class="fields"><label>اسم القسم<input id="categoryName" required maxlength="65" placeholder="📡 قنوات منوعة"></label><label>معرّف القسم (اختياري)<input id="categoryId" maxlength="35" placeholder="يُنشأ تلقائيًا"></label></div><div class="actions"><button class="btn primary" type="submit">إضافة وحفظ</button><button class="btn" type="button" id="cancelCategory">إلغاء</button></div></form>
+    </section>
+    <section class="panel" data-section="import">
+     <div class="heading"><h1>⬆ استيراد القنوات</h1><p>رفع ملفات M3U وM3U8 أو إدخال رابط قائمة وقنوات متعددة دفعة واحدة.</p></div>
+     <div class="card"><div class="fields">
+      <label class="wide">اختيار ملفات من جهازك<input id="playlistFiles" type="file" accept=".m3u,.m3u8,.txt,audio/x-mpegurl" multiple><small>يمكن اختيار عدة ملفات معًا؛ حتى 6000 قناة في الدفعة.</small></label>
+      <label class="wide">أو الصق قائمة M3U هنا<textarea id="playlistText" rows="6" placeholder="#EXTM3U&#10;#EXTINF:-1 tvg-country=&quot;SA&quot;,قناة&#10;https://example.com/live.m3u8"></textarea></label>
+      <label class="wide">أو رابط قائمة M3U عبر HTTPS<input id="playlistUrl" type="url" placeholder="https://example.com/channels.m3u"></label>
+      <label>ضع القنوات في قسم<select id="importCategory"><option value="">حسب القسم في ملف M3U</option></select></label>
+      <label>سياسة الاستيراد<select id="importPolicy"><option value="arabic">القنوات العربية فقط</option></select></label>
+     </div><div class="actions"><button class="btn primary" type="button" id="doImport">⬆ استيراد الآن</button><button class="btn" type="button" id="clearImport">مسح الحقول</button></div><div id="importStatus" class="notice" role="status">الاستيراد يضيف القنوات الجديدة ويمنع تكرار رابط البث.</div></div>
+    </section>
+    <section class="panel" data-section="featured">
+     <div class="heading"><h1>▶ إعدادات شاشة العرض</h1><p>حدد القناة الرئيسية التي تظهر أعلى الموقع عند فتحه.</p></div>
+     <div class="card"><label>اختيار القناة الرئيسية<select id="featuredChannel"><option value="">لا توجد قناة مختارة</option></select></label><div class="actions"><button id="saveFeatured" class="btn primary">حفظ الاختيار</button><button id="clearFeatured" class="btn">إلغاء التحديد</button></div><p class="sub">يتم عرض اسم القناة الرئيسية دون تشغيل الصوت تلقائيًا. يختار الزائر تشغيل البث بنفسه.</p></div>
+    </section>
+    <section class="panel" data-section="appearance">
+     <div class="heading"><h1>🎨 مظهر الموقع</h1><p>غيّر اسم الموقع، العناوين، الألوان، الإعلان، أحجام البطاقات وصورة الواجهة.</p></div>
+     <form id="appearanceForm" class="card"><div class="fields">
+      <label>اسم الموقع<input id="appearanceBrand" maxlength="200"></label>
+      <label>عنوان الصفحة<input id="appearanceHeading" maxlength="200"></label>
+      <label class="wide">وصف الواجهة<textarea id="appearanceDescription" rows="3" maxlength="500"></textarea></label>
+      <label class="wide">شريط إعلان أو رسالة أعلى الصفحة<input id="appearanceAnnouncement" maxlength="200"></label>
+      <label>لون النيون الرئيسي<input id="appearanceAccent" type="color"></label>
+      <label>اللون الذهبي<input id="appearanceGold" type="color"></label>
+      <label>لون الخلفية<input id="appearanceBackground" type="color"></label>
+      <label>حجم بطاقات القنوات (120–280 بكسل)<input id="appearanceCardSize" type="range" min="120" max="280" value="177"><small id="cardSizeLabel">177px</small></label>
+      <label class="wide">صورة الواجهة (HTTPS، اختياري)<input id="appearanceBannerUrl" type="url" placeholder="https://example.com/banner.jpg"></label>
+     </div><div class="actions"><button type="submit" class="btn primary">💾 حفظ المظهر</button><button type="button" id="resetAppearance" class="btn">الألوان الأصلية</button></div></form>
+     <div class="card"><h2>معاينة سريعة</h2><div id="stylePreview" class="preview"><h3 id="previewTitle">ALMOGHANI LIVE</h3><p id="previewDescription">القنوات العربية مباشرة</p><div class="tv">▶ ALMOGHANI LIVE</div></div></div>
+    </section>
+    <section class="panel" data-section="backups">
+     <div class="heading"><h1>📦 النسخ والملفات</h1><p>استيراد وتصدير ونسخ احتياطية لاسترجاع التغييرات لاحقًا.</p></div>
+     <div class="card"><h2>تصدير بيانات الموقع</h2><div class="actions"><button id="downloadBackup" class="btn primary">تنزيل نسخة احتياطية JSON</button><button id="downloadM3u" class="btn">تنزيل جميع القنوات M3U</button><button id="downloadConfig" class="btn gold">تنزيل site-config.js للنشر</button></div><hr class="divider"><h2>استعادة نسخة محفوظة</h2><label>اختر ملف ALMOGHANI_LIVE_BACKUP.json<input type="file" id="backupFile" accept=".json,application/json"></label><div class="actions"><button id="restoreBackup" class="btn primary">استعادة النسخة</button><button id="resetPublished" class="btn danger">التراجع عن التعديلات المحلية</button></div></div>
+    </section>
+    <section class="panel" data-section="publish">
+     <div class="heading"><h1>🚀 نشر تعديلات الموقع</h1><p>انشر إعداداتك لجميع الزوار بعد معاينتها.</p></div>
+     <div class="card"><h2>نشر مباشر إلى GitHub</h2>
+      <p>المستودع: <code>9z44yj4h8m-afk/Z</code> • الملف: <code>site-config.js</code></p>
+      <div class="notice warning">يتطلب النشر المباشر رمز GitHub Fine-grained PAT بصلاحية <b>Contents: Read and write</b> لهذا المستودع فقط. لا نحتفظ بالرمز في ملفات الموقع أو في التخزين المحلي؛ يُستخدم عند الضغط على «نشر» فقط. رمز لوحة الإدارة ليس حماية حقيقية للنشر.</div>
+      <label>رمز GitHub للنشر فقط<input id="githubToken" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_..."></label>
+      <div class="actions"><button id="publishGitHub" class="btn primary">🚀 حفظ ونشر للجميع</button><button id="exportForGithub" class="btn gold">تنزيل ملف النشر يدويًا</button><a class="btn" href="https://github.com/9z44yj4h8m-afk/Z/edit/main/site-config.js" target="_blank" rel="noopener noreferrer">تعديل الملف في GitHub</a></div>
+      <p class="sub" id="publishStatus">لا تنشر رمز الوصول في الملفات ولا تشاركه مع أحد. في حال رفض المتصفح نشر GitHub API يمكنك تنزيل الملف ورفعه يدويًا.</p>
+     </div>
+    </section>
+   </div>
+  </div>
+ </div>
+</div>
+<div id="noticeBar" role="status" aria-live="polite"></div>
+<script src="site-config.js"></script>
+<script src="control.js"></script>
+<script src="admin.js" defer></script>
+</body></html>
