@@ -1,37 +1,31 @@
-# ALMOGHANI LIVE — full project archive
+# ALMOGHANI LIVE — الموقع الكامل على GitHub
 
-This repository keeps **both versions** of ALMOGHANI LIVE in one place.
+يحتوي هذا المستودع على **نسخة الموقع الحالية** بجميع ملفات HTML والقنوات، وكذلك رابط Git مباشر إلى **مشروع Lovable الكامل**.
 
-## Static GitHub Pages website (repository root)
+## 1. الموقع الأساسي
+- `index.html`: واجهة الموقع ومشغل البث
+- `admin.html` و`admin.js` و`admin/index.html`: لوحة التحكم
+- `control.js` و`site-config.js`: إعدادات الموقع
+- `channels-arabic.m3u` وملفات M3U الأخرى: قوائم القنوات
+- `design-backups/`: نسخ التصميم السابقة
+- الصور والملفات الأخرى محفوظة في جذر المستودع
 
-- `index.html`: published HTML site and built-in video player
-- `admin.html`, `admin.js`, `control.js`, `admin/index.html`: admin dashboard
-- `channels-arabic.m3u` and other `.m3u` files: channel playlists
-- `design-backups/`: historical HTML designs
-- `site-config.js`: publicly published site appearance and channel settings
-
-## Complete Lovable / React application (`lovable-app/`)
-
-The `import-lovable-site.yml` workflow copies the complete **source tree** from
+## 2. ملفات Lovable/React كاملة
+مجلد **`lovable-app/`** هو Git submodule يرتبط بمستودع
 [almoghani-net-22](https://github.com/9z44yj4h8m-afk/almoghani-net-22)
-into `lovable-app/`: the TypeScript/React design, control studio, live player,
-channel catalog, IPTV playlists, media assets, migrations and Android app source.
+عند الالتزام `6fa834fcee863dd51729a405a05a91cea7ab3b85`.
 
-**Source code is not the deployed backend database.** Live subscriptions, account data,
-database rows and authentication secrets are not copied. The source repository's
-`.env` and `.github` files are intentionally excluded from the public mirror.
-The workflow runs when explicitly updated/triggered; it does not regularly
-overwrite channel content.
+يمكن فتح المجلد من GitHub لرؤية المشروع الكامل (المشغل، الأقسام، لوحة التحكم، IPTV، القنوات، الصور، Android، وملفات المشروع).
 
-## Deployment
+لاستلام جميع الملفات محليًا مع المجلد المرتبط:
 
-This repository does **not** automatically claim the production domain
-`almoghani.net`. The original `Z` repository remains unchanged and continues
-to control its custom domain until a separate migration has been verified.
+```bash
+git clone --recurse-submodules https://github.com/9z44yj4h8m-afk/Aaa.git
+```
 
-For GitHub Pages static hosting, publish the repository root. The React/Lovable
-application needs its own build and hosting configuration and is **not**
-equivalent to the static root HTML site.
+**مهم:** هذا المجلد مرتبط بالمصدر ولا يعني أن مئات ملفات Lovable نُسخت مستقلّة إلى مستودع Aaa. للحفظ المستقل يمكن استخدام workflow `import-lovable-site.yml` بعد تفعيل GitHub Actions.
 
-Only import and share video streams that you are authorized to use. URLs in
-public M3U lists are accessible to repository visitors.
+## النشر
+لم يتم نقل ربط `almoghani.net` من مستودع `Z`، للحفاظ على عمل الموقع الحالي. تستطيع نشر نسخة Aaa على GitHub Pages بعد ضبط إعدادات الاستضافة.
+
+هذه الملفات المصدرية لا تتضمن نسخًا من بيانات قاعدة Supabase أو حسابات العملاء والاشتراكات. لا تشارك روابط بث خاصة أو بيانات دخول ضمن مستودع عام.
