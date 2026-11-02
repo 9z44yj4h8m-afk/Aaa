@@ -1,0 +1,48 @@
+#EXTM3U
+#EXTINF:-1 tvg-chno="1" tvg-logo="https://i.imgur.com/pGgp38I.png" group-title="روتانا",روتانا سينما السعودية
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/cinema_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="2" tvg-logo="https://i.imgur.com/dGlKoLW.png" group-title="روتانا",روتانا سينما مصر
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/cinemamasr_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="3" tvg-logo="https://i.imgur.com/btnhPjZ.png" group-title="روتانا",روتانا دراما
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/drama_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="4" tvg-logo="https://i.imgur.com/pMMUvkt.png" group-title="روتانا",روتانا كلاسيك
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/classical_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="5" tvg-logo="https://i.imgur.com/IlT8U6S.png" group-title="روتانا",روتانا كوميدي
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/comedy_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="6" tvg-logo="https://i.imgur.com/pGgp38I.png" group-title="روتانا",روتانا خليجية
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/khaleejiya_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="7" tvg-logo="https://i.imgur.com/pGgp38I.png" group-title="روتانا",روتانا موسيقى
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/music_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="8" tvg-logo="https://i.imgur.com/pGgp38I.png" group-title="روتانا",روتانا كليب
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/clip_net-7Y83PP5adWixDF93/playlist.m3u8
+#EXTINF:-1 tvg-chno="9" tvg-logo="https://i.ytimg.com/vi/haRt_29y2iQ/hqdefault.jpg" group-title="روتانا",روتانا ستيشن
+https://www.youtube.com/watch?v=haRt_29y2iQ
+#EXTINF:-1 tvg-chno="10" tvg-logo="https://i.imgur.com/pGgp38I.png" group-title="روتانا",الرسالة
+#EXTVLCOPT:http-referrer=https://rotana.net/
+#EXTVLCOPT:http-origin=https://rotana.net
+#EXTVLCOPT:http-user-agent=Mozilla/5.0
+https://rotana.hibridcdn.net/rotananet/risala_net-7Y83PP5adWixDF93/playlist.m3u8
