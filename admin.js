@@ -267,6 +267,18 @@ el('gateForm').addEventListener('submit',e=>{
 });
 document.querySelectorAll('[data-panel]').forEach(b=>b.addEventListener('click',()=>selectPanel(b.dataset.panel)));
 document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>selectPanel(b.dataset.goto)));
+el('manualRefreshSource').onclick=async()=>{
+ const btn=el('manualRefreshSource');
+ if(btn.disabled)return;
+ btn.disabled=true;btn.textContent='جارٍ تحديث القائمة…';
+ try{
+  await init();
+  const status=el('loadedState').textContent||'';
+  msg(status.startsWith('تم تحميل')?'✅ تحدّثت قائمة القنوات يدويًا':'تعذّر تحديث القائمة الأصلية؛ لم تُحذف تعديلاتك',!status.startsWith('تم تحميل'));
+ }finally{
+  btn.disabled=false;btn.textContent='↻ تحديث قائمة الموقع يدويًا';
+ }
+};
 el('saveLocal').onclick=()=>save();
 el('topPublish').onclick=()=>selectPanel('publish');
 el('newChannel').onclick=()=>openChannel();
