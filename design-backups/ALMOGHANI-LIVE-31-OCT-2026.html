@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090c14"><meta name="description" content="ALMOGHANI LIVE — قنوات البث المباشر مصنفة مع أولوية للقنوات العربية">
+<title>ALMOGHANI LIVE | واجهة IPTV أفقية</title>
+<style>
+:root{color-scheme:dark;--bg:#090c14;--panel:#111725;--border:#2b374b;--cyan:#28e5f4;--gold:#d4b57c;--fg:#f3f6ff;--muted:#9faec6;--purple:#a07cff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 1100px 330px at 50% -5%,#123253 0%,transparent 75%),var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
+header{position:sticky;top:0;z-index:30;display:flex;gap:15px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#090e19f0;backdrop-filter:blur(16px);border-bottom:1px solid #27354b;padding:15px max(16px,calc((100vw - 1350px)/2))}.brand{font-weight:900;letter-spacing:1.7px;font-size:23px;color:white;text-shadow:0 0 18px #28e5f455}.brand b{color:var(--gold)}.tag{border:1px solid #3d4660;padding:6px 10px;border-radius:30px;color:#cdd7ed;font-size:12px}.headtools{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+button,input{font:inherit}button{cursor:pointer}.btn{border-radius:12px;padding:11px 15px;border:1px solid var(--border);background:#182234;color:#eaf6ff;transition:.2s}.btn:hover{border-color:var(--cyan);background:#1d3041}.btn.primary{background:linear-gradient(125deg,#1a7987,#156078);border-color:#23a3b1;color:white;font-weight:700}.btn:disabled{opacity:.45;cursor:default}.btn.small{padding:7px 11px;font-size:13px}
+main{max-width:1350px;margin:auto;padding:22px 16px 90px}.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.68fr);gap:18px}.player{border:1px solid #365170;border-radius:19px;background:#000;min-width:0;overflow:hidden;box-shadow:0 4px 50px #1b5b8630}.playerbar{background:#111a2a;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px 13px;font-size:13px}.live{font-weight:700;color:#ff787d}.live:before{content:'●';color:#ff313c;margin-left:6px}.screen{height:auto;aspect-ratio:16/9;position:relative;background:radial-gradient(ellipse,#102136,#060910 67%);display:grid;place-items:center}.screen video:not([controls]){opacity:0}.screen video{display:block;width:100%;height:100%;object-fit:contain;background:#020407}.placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:11px;color:#b6c8df;text-align:center;padding:25px}.placeholder .symbol{font-size:54px;filter:drop-shadow(0 0 15px #33deee70)}.placeholder h2{margin:0;font-size:22px}.placeholder p{max-width:470px;font-size:13px;line-height:1.8;margin:0}.playeractions{display:flex;gap:8px;padding:9px;background:#111a2a}.playeractions .btn{flex:1}.playeractions a{text-decoration:none;display:flex;align-items:center;justify-content:center}
+.intro{border:1px solid var(--border);border-radius:19px;padding:20px;background:linear-gradient(140deg,#182237,#101826);display:flex;flex-direction:column;gap:14px}.intro h1{font-size:25px;line-height:1.5;margin:0}.intro h1 em{font-style:normal;color:var(--cyan)}.intro p{color:var(--muted);font-size:14px;line-height:1.85;margin:0}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{border:1px solid #34465e;border-radius:13px;background:#0b1424;padding:14px}.stat strong{font-size:21px;display:block;color:#effdff}.stat span{font-size:12px;color:#91a7c5}.note{font-size:12px;color:#acbfd6;line-height:1.7}.notice{margin:18px 0 12px;padding:13px 15px;border:1px solid #2c4961;border-radius:12px;background:#132237;color:#c3dbf1;font-size:13px;line-height:1.7}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:19px 0 14px}.search{flex:1;min-width:180px;border:1px solid #354961;background:#141e2e;border-radius:12px;color:white;padding:13px 15px;outline:0}.search:focus{border-color:var(--cyan)}.sectiontitle{display:flex;align-items:center;justify-content:space-between;margin:22px 0 14px;gap:8px}.sectiontitle h2{font-size:18px;margin:0}.order{color:var(--gold);font-size:12px}.categories{display:flex;gap:8px;overflow:auto;padding:5px 0 13px;scrollbar-width:thin;scrollbar-color:#344763 transparent}.category{white-space:nowrap;flex-shrink:0;border-radius:30px;padding:10px 13px;background:#182236;border:1px solid #2c3a52;color:#d1dded}.category.selected{border-color:var(--cyan);background:#163a48;color:#d6fbff}.category small{color:#9eb4cc;margin-right:5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(177px,1fr));gap:12px}.channel{border:1px solid #2c3b50;border-radius:15px;background:linear-gradient(140deg,#182131,#101827);min-width:0;overflow:hidden;transition:transform .15s,border-color .15s;position:relative}.channel:hover{transform:translateY(-3px);border-color:#31c8d6}.channel.playing{border-color:var(--cyan);box-shadow:0 0 16px #24cad030}.logoArea{height:105px;display:flex;align-items:center;justify-content:center;background:#0c1421;position:relative}.logoArea img{display:block;width:80%;height:74px;object-fit:contain}.fallbackLogo{font-size:32px;color:#91e9ef}.country{position:absolute;bottom:7px;right:8px;color:#bdcce0;background:#112033d9;border:1px solid #345068;border-radius:6px;font-size:10px;padding:3px 6px}.arabtag{position:absolute;top:7px;right:8px;background:#20534e;color:#d2fff1;border-radius:6px;padding:3px 6px;font-size:10px}.chbody{padding:11px}.chname{font-weight:700;font-size:13px;min-height:36px;line-height:1.35;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.chbuttons{display:flex;gap:7px;margin-top:10px}.chbuttons button{background:#162638;border:1px solid #334b62;color:white;border-radius:8px;padding:8px 5px}.playbtn{flex:1}.fav{width:35px}.fav.on{color:#ffafc3;border-color:#e57798}.emptystate{text-align:center;color:#a3bbd3;border:1px dashed #344963;border-radius:13px;padding:36px 12px}.more{margin:20px auto;display:block;min-width:200px}.footnote{margin:35px 0 0;color:#8299b2;font-size:12px;line-height:1.8;text-align:center}
+@media(max-width:760px){header{position:static;padding:12px 15px}.brand{font-size:20px}.hero{grid-template-columns:1fr}.intro{order:-1;padding:14px}.intro h1{font-size:21px}.stats{grid-template-columns:repeat(2,1fr)}main{padding-top:10px}.screen{aspect-ratio:16/9}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.logoArea{height:96px}.playeractions{flex-wrap:wrap}.playeractions .btn{flex:1 1 25%}.chname{font-size:12px}}
+@media(max-width:390px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.category{padding:9px 10px}.tag{display:none}.btn{padding:9px 11px}}
+
+/* ALMOGHANI LIVE • Control Studio */
+:root{--accent:var(--cyan);--card-min:177px}
+[hidden]{display:none!important}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.brand{user-select:none}
+.btn.admin-launch{font-weight:800;background:linear-gradient(115deg,#d7b971,#77542d 125%);color:#11121b;border-color:#f0d79d;box-shadow:0 0 22px #dab46a22}
+.btn.admin-launch:hover{box-shadow:0 0 28px #e4b66e66;transform:translateY(-1px)}
+.grid{grid-template-columns:repeat(auto-fill,minmax(var(--card-min),1fr))}
+.custom-announcement{margin:0 0 16px;border-radius:15px;padding:17px 22px;background:linear-gradient(130deg,#182e40,#201a37);border:1px solid #537a95;box-shadow:0 0 40px #3694cb16;display:flex;gap:12px;align-items:center;line-height:1.9;font-weight:700;white-space:pre-wrap}
+.featured-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid #314158;padding-top:12px;font-size:12px;color:#d4dfee}
+.featured-line strong{color:#e7c788}.featured-line button{margin-inline-start:auto}
+body.admin-open{overflow:hidden}
+.admin-shell{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:14px;isolation:isolate}
+.admin-backdrop{position:absolute;inset:0;background:#02040bcf;backdrop-filter:blur(9px);z-index:-1}
+.admin-frame{width:min(1220px,100%);height:min(90vh,900px);max-height:calc(100dvh - 28px);border:1px solid #b7936659;border-radius:22px;background:linear-gradient(145deg,#151a29,#080e19 73%);box-shadow:0 30px 110px #000c,0 0 44px #e1b76c12;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+.admin-head{padding:15px 20px;border-bottom:1px solid #344055;display:flex;align-items:center;gap:12px;justify-content:space-between;background:#131b2a}
+.admin-head .admin-title{font-size:20px;font-weight:900;letter-spacing:.5px}.admin-title span{color:#e7c185}.admin-sub{color:#90a4bf;font-size:11px;margin-top:3px}
+.admin-x{font-size:22px;line-height:1;min-width:40px}
+.admin-gate{margin:auto;width:min(460px,calc(100% - 28px));padding:28px;background:#111a2b;border:1px solid #384961;border-radius:22px;text-align:center;box-shadow:0 0 45px #32d0e51a}
+.admin-gate .lock-art{font-size:52px;margin-bottom:7px}.admin-gate h2{margin:7px 0 9px}.admin-gate p{line-height:1.8;font-size:12px;color:#a8bbd0}
+.admin-gate input{font-size:19px;letter-spacing:3px;text-align:center;direction:ltr;width:100%;margin:12px 0 8px}
+.admin-notice{padding:10px;border:1px solid #315166;border-radius:11px;background:#192b3a;color:#c2e6ff;font-size:12px;line-height:1.7}
+.admin-notice.warn{background:#38251b;border-color:#6a4d38;color:#f0d3bc}
+.admin-workspace{display:grid;grid-template-columns:230px minmax(0,1fr);flex:1;min-height:0}
+.admin-sidebar{border-left:1px solid #2c394e;background:#0b1321;padding:16px 11px;overflow:auto;min-height:0}
+.admin-side-logo{text-align:center;border:1px solid #394960;background:#151f2f;border-radius:14px;padding:16px 12px;margin-bottom:15px;font-weight:900;color:#e7c788;line-height:1.7}
+.admin-side-logo small{color:#8fb0c1;display:block;font-size:11px;font-weight:normal}
+.admin-nav{display:flex;flex-direction:column;gap:8px}
+.admin-nav button{width:100%;text-align:right;padding:13px;border-radius:11px;color:#c6d2e5;background:transparent;border:1px solid transparent;font-weight:700;white-space:nowrap}
+.admin-nav button:hover,.admin-nav button.active{color:white;background:linear-gradient(100deg,#254052,#1b2436);border-color:#54718e}
+.admin-nav button.active:before{content:'◆';color:#e6c47d;margin-left:8px}
+.admin-sidebar-note{font-size:11px;color:#8297b1;margin-top:22px;line-height:1.8;border-top:1px solid #27384b;padding-top:14px}
+.admin-content{padding:20px 24px 38px;overflow:auto;min-width:0}
+.admin-tab[hidden]{display:none}
+.admin-h{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:17px}
+.admin-h h2{margin:0;font-size:22px}.admin-h p{margin:5px 0 0;color:#9bafc4;font-size:12px;line-height:1.7}
+.admin-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.admin-row>.fill{flex:1;min-width:120px}
+.admin-btn{background:#172437;border:1px solid #364c65;color:#e6f1ff;border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;cursor:pointer}
+.admin-btn:hover{border-color:#3cd8e4;background:#1b3544}.admin-btn.gold{background:#9b7538;color:#fff3d5;border-color:#d5b06f}.admin-btn.red{background:#451f2b;color:#ffcbd4;border-color:#9b4355}.admin-btn.ghost{background:transparent;color:#b2c2d8}
+.admin-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.admin-stat{padding:18px;border:1px solid #35485e;border-radius:15px;background:linear-gradient(140deg,#182638,#111827)}.admin-stat .ic{font-size:25px}.admin-stat strong{font-size:25px;display:block;margin:8px 0 2px;color:white}.admin-stat span{color:#a7b8ca;font-size:12px}
+.admin-card{border:1px solid #34465f;border-radius:14px;background:#111b2b;padding:17px;margin:12px 0}
+.admin-card h3{margin:0 0 12px;font-size:16px}.admin-card p{font-size:12px;color:#a4b8cb;line-height:1.8}
+.admin-field{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#bdd0e3;font-weight:700;min-width:0}
+.admin-field input,.admin-field textarea,.admin-field select,.admin-gate input{background:#0b1321;border:1px solid #3c536b;color:#f2f8ff;border-radius:10px;padding:11px 12px;font:inherit;font-size:13px;min-width:0;max-width:100%;outline:0}
+.admin-field textarea{resize:vertical;min-height:76px}.admin-field input:focus,.admin-field select:focus,.admin-field textarea:focus{border-color:#34dce6;box-shadow:0 0 0 3px #35dce61b}
+.admin-field option{background:#142036}
+.admin-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.admin-form-grid .wide{grid-column:1/-1}
+.admin-table{display:flex;flex-direction:column;gap:7px;margin:13px 0}
+.admin-item{display:flex;align-items:center;gap:11px;border:1px solid #2e4157;border-radius:12px;padding:9px 10px;background:#0d1626;min-width:0}
+.admin-item img{width:43px;height:43px;object-fit:contain;background:#182338;border-radius:8px;flex-shrink:0}
+.admin-item .item-info{flex:1;min-width:0}.admin-item strong{font-size:13px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.admin-item small{display:block;color:#94abc4;margin-top:5px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.admin-item .item-actions{display:flex;gap:5px;flex-wrap:wrap}.admin-item .item-actions button{padding:8px;font-size:12px}
+.admin-modal{position:absolute;inset:0;z-index:155;background:#030711c9;display:grid;place-items:center;padding:12px;backdrop-filter:blur(4px)}
+.admin-dialog{border:1px solid #5e7390;background:#111b2b;border-radius:18px;box-shadow:0 18px 75px #000c;width:min(600px,100%);padding:20px;max-height:calc(100dvh - 32px);overflow:auto}
+.admin-dialog h3{margin:0 0 15px}.admin-dialog .admin-row{margin-top:16px}
+.admin-select{width:100%}.admin-color-grid{display:flex;flex-wrap:wrap;gap:10px}
+.theme-choice{border:1px solid #45596b;border-radius:11px;padding:13px 15px;background:#1c2635;font-weight:700;color:#f4eddf}.theme-choice.selected{border-color:#e1c587;box-shadow:0 0 0 2px #dabc8047}
+.admin-tag{background:#253748;border:1px solid #3e5870;border-radius:20px;font-size:11px;padding:5px 9px;color:#b9cfe2;display:inline-block}
+.admin-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);max-width:min(500px,90vw);border-radius:12px;background:#1e3541;color:#effcff;border:1px solid #42b6bd;box-shadow:0 18px 45px #000a;padding:13px 18px;z-index:200;text-align:center;font-size:13px}
+.admin-toast.error{border-color:#f58d9c;background:#49303a}
+.progress-note{font-size:12px;color:#b9cbdc;line-height:1.7;margin-top:8px;min-height:15px}
+.admin-drag-hint{border:1px dashed #52667c;border-radius:12px;padding:18px;text-align:center;color:#a5b9d0;font-size:13px}
+#adminCategoryRows .admin-item{min-height:55px}
+@media(max-width:900px){.admin-frame{width:100%;height:100%;max-height:100dvh;border-radius:0}.admin-shell{padding:0}.admin-workspace{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}.admin-sidebar{padding:10px;overflow-x:auto;overflow-y:hidden;border-left:0;border-bottom:1px solid #384255}.admin-side-logo,.admin-sidebar-note{display:none}.admin-nav{flex-direction:row}.admin-nav button{width:auto;min-width:max-content;text-align:center;padding:10px}.admin-nav button.active:before{display:none}.admin-content{padding:15px}.admin-head{padding:12px 15px}.admin-cards{gap:7px}.admin-stat{padding:12px}.admin-stat strong{font-size:20px}.admin-item{gap:7px}.admin-item .item-actions{justify-content:end}}
+@media(max-width:520px){.admin-sidebar{overflow-y:visible}.admin-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.admin-nav button{min-width:0;width:100%;white-space:normal;font-size:11px;padding:9px 5px}.admin-form-grid{grid-template-columns:1fr}.admin-form-grid .wide{grid-column:auto}.admin-h h2{font-size:19px}.admin-item{flex-wrap:wrap}.admin-item .item-info{min-width:calc(100% - 60px)}.admin-item .item-actions{width:100%;justify-content:flex-end}.admin-item .item-actions button{flex:1}.admin-row .admin-btn{flex:1}.admin-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.admin-stat span{font-size:10px}.brand{letter-spacing:.4px}}
+
+
+/* ALMOGHANI LIVE • LANDSCAPE IPTV • user-requested four sections */
+:root{--pane:#141c2b;--pane-dark:#101625;--line:#35435b;--pane-soft:#1d273b}
+body{background:radial-gradient(ellipse 850px 420px at 82% -10%,#26345c8a,transparent 85%),radial-gradient(ellipse 900px 530px at 0 90%,#151c33,transparent 85%),#080d17}
+.app-header{height:66px;position:relative;padding:10px clamp(12px,2vw,28px);max-width:none;gap:12px;flex-wrap:nowrap;background:linear-gradient(100deg,#131827f2,#20283ff2 60%,#111827f2);border-bottom:1px solid #53607e78;box-shadow:0 2px 12px #0005}
+.app-header:before{content:'';position:absolute;bottom:-1px;right:1.3%;width:22%;height:1px;background:linear-gradient(90deg,transparent,#d4b57c88,transparent)}
+.brand{font-size:clamp(15px,2vw,22px);white-space:nowrap;letter-spacing:.65px}.brand:before{content:'◈';display:inline-block;margin-left:7px;color:var(--gold);font-size:23px;vertical-align:-2px}.brand b{background:linear-gradient(110deg,#fcf1c3,#c59b54);color:transparent;background-clip:text;-webkit-background-clip:text}.tag{font-size:10px;background:#242d43a8;border-color:#a38b6775}
+.header-search{flex:1;max-width:420px;min-width:110px;position:relative;display:flex;align-items:center}.header-search>span{position:absolute;right:13px;z-index:1;font-size:23px;color:#e5c584}.header-search .search{margin:0;width:100%;min-width:0;font-size:13px;border:1px solid #55617b;background:#2a3448a6;border-radius:26px;padding:9px 37px 9px 12px;color:#fff;box-shadow:inset 0 2px 8px #0002;line-height:1.3}.header-search .search::placeholder{color:#a9b8d2}
+.headtools{flex-shrink:0;gap:7px}.headtools .btn{border-color:#57627b;border-radius:10px;padding:8px 11px;background:#293347;color:#e4ebfa;font-weight:700}.headtools .admin-launch{background:linear-gradient(120deg,#d9bd80,#9d7942);color:#0b1324;border-color:#e2c98c;box-shadow:0 1px 12px #ddb9792e}
+.iptv-main{max-width:none;margin:0 auto;padding:12px clamp(10px,1.45vw,22px) 26px}
+.landscape-scroll{width:100%;overflow-x:auto;border-radius:16px;scrollbar-color:#7284a2 #192239;scrollbar-width:thin}
+.landscape-note{display:none;font-size:12px;padding:8px 10px;border:1px solid #82704e;border-radius:9px;margin-bottom:10px;color:#f6dbad;background:#28273a}
+.iptv-workspace{display:grid;grid-template-columns:minmax(350px,1.65fr) minmax(245px,.88fr) minmax(154px,.45fr);gap:9px;min-height:390px;height:calc(100dvh - 145px);max-height:820px;direction:rtl}
+.player-dock,.channels-dock,.categories-dock{min-width:0;min-height:0;border:1px solid #56607d88;background:linear-gradient(160deg,#262e49,#171e30 68%,#121b2a);border-radius:13px;box-shadow:inset 0 1px #ffffff13,0 12px 24px #0004;overflow:hidden}
+.player-dock{display:flex;flex-direction:column;padding:10px;gap:9px}
+.player{border:1px solid #4e5b7c;box-shadow:0 0 22px #000a,0 0 23px #5495ea12;border-radius:11px;background:#070b15;flex-shrink:0}
+.playerbar{background:linear-gradient(90deg,#121c31,#25314d);font-size:12px;padding:9px 11px;border-bottom:1px solid #3e4f6b;min-height:38px}.playerbar #playingName{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:center;color:#f1f4fe;font-weight:600}.live{font-size:10px;color:#ffb7b8;display:flex;align-items:center;gap:5px}.live:before{display:none}.live-pulse{width:7px;height:7px;display:inline-block;border-radius:50%;background:#ff344d;box-shadow:0 0 0 3px #f5334333,0 0 12px #ff344d;animation:blink 2s infinite}@keyframes blink{50%{opacity:.35}}
+.quality-badge{font-size:10px;padding:3px 8px;background:#c0a26720;border:1px solid #b6996066;color:#e5ce9c;border-radius:6px;font-weight:800}
+.screen{aspect-ratio:16/9;max-height:calc(100dvh - 236px);min-height:190px;background:radial-gradient(ellipse 70% 100% at 50% 60%,#192d4a 0%,#0c1323 61%,#070b15);border-bottom:1px solid #394969}.screen:before{pointer-events:none;content:'';position:absolute;inset:8px;border:1px solid #ffffff0b;z-index:1}.screen video{z-index:2;position:relative;background:#020509}.placeholder{z-index:3;background:radial-gradient(ellipse 42% 70% at 50% 50%,#24385b70,transparent);padding:15px;gap:5px;pointer-events:none}.placeholder .symbol{font-size:clamp(38px,5vw,64px);color:#e3c486;filter:drop-shadow(0 0 14px #d6b56c55)}.placeholder h2{font-weight:900;letter-spacing:2px;font-size:clamp(17px,2vw,26px);color:#f1f5ff;text-shadow:0 0 20px #fff3}.placeholder p{font-size:12px;color:#b7c6e0}.player-idle-mark{color:#ddbf7c;font-size:10px;letter-spacing:2px;margin-top:8px}
+.playeractions{background:#1a2438;gap:6px;padding:7px}.playeractions .btn{border-color:#53617a;background:linear-gradient(170deg,#293752,#1b273b);font-size:11px;border-radius:8px;padding:8px 5px}
+.intro{display:grid;grid-template-columns:1fr auto;gap:7px 12px;background:#141d2e;border:1px solid #3d4a62;border-radius:10px;padding:10px 13px;min-height:0}.intro-copy h1{font-size:clamp(14px,1.4vw,18px);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.intro-copy h1 em{color:#e3c88d}.intro-copy p{font-size:11px;line-height:1.6;color:#a7b6ce}.intro .stats{display:flex;gap:6px}.intro .stat{padding:5px 11px;border-radius:8px;text-align:center;min-width:65px}.intro .stat strong{font-size:17px}.intro .stat span{font-size:10px}.intro .note{grid-column:1/-1;font-size:10px;line-height:1.5}.intro .featured-line{grid-column:1/-1}
+.channels-dock,.categories-dock{display:flex;flex-direction:column}
+.dock-title{height:48px;min-height:48px;display:flex;align-items:center;gap:7px;justify-content:space-between;padding:0 12px;background:linear-gradient(100deg,#2a3655,#252e49);border-bottom:1px solid #64708e66}
+.dock-title-main{display:flex;align-items:center;gap:8px;min-width:0}.dock-title h2{font-size:14px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tiny-glyph{font-size:17px;color:#e4c27e}.count-label{font-size:10px;border:1px solid #526282;background:#17223b;border-radius:17px;padding:4px 7px;color:#b8c9e4;white-space:nowrap}
+.channel-list-scroller{overflow-y:auto;overflow-x:hidden;min-height:0;flex:1;scrollbar-width:thin;scrollbar-color:#7788ac #182238;padding:5px 6px 10px}
+.grid{display:flex!important;flex-direction:column;gap:4px;grid-template-columns:none!important}.channel{display:flex;align-items:center;gap:7px;min-height:53px;border-radius:7px;padding:5px 8px;background:linear-gradient(96deg,#28324b,#202940);border:1px solid #46516d;cursor:pointer;flex-shrink:0;transition:background .14s,border-color .14s;position:relative}.channel:hover{background:#313f60;transform:none;border-color:#889cc8}.channel.playing{border-color:#d8b678;background:linear-gradient(100deg,#493f3f,#293954);box-shadow:inset 3px 0 #dfbb79,0 0 10px #d1b77820}.channel:focus-visible{outline:2px solid #d5b57c;outline-offset:-2px}
+.channel-index{min-width:24px;text-align:center;font-size:13px;color:#91a6c6;font-variant-numeric:tabular-nums}.channel-logo{width:40px;height:39px;flex:0 0 40px;display:grid;place-items:center;border-radius:7px;background:#0f192a;border:1px solid #4d5871;overflow:hidden}.channel-logo img{width:92%;height:92%;object-fit:contain}.channel-logo .fallbackLogo{font-size:17px}.channel .chbody{flex:1;min-width:0;padding:0;display:flex;flex-direction:column;gap:3px}.channel .chname{font-size:12px;line-height:1.4;min-height:0;font-weight:700;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;display:block;color:#e8edfa}.channel .chmeta{font-size:10px;color:#a5b5d3;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.channel .chbuttons{display:flex;gap:3px;margin:0}.channel .chbuttons button{border:0;background:transparent;font-size:15px;padding:5px;color:#d6dcf1}.channel .chbuttons .playbtn{font-size:18px;color:#e5c384}.channel .chbuttons .fav.on{color:#f5a5b7}.channel .chbuttons .fav{width:auto}.channel .now-tag{position:absolute;top:0;left:0;background:#a57f44;color:#171b2b;padding:1px 5px;font-size:8px;font-weight:800;border-bottom-right-radius:5px}
+.list-footer{display:flex;align-items:center;justify-content:space-between;gap:6px;border-top:1px solid #495a72;padding:9px;font-size:10px;color:#a9b8cd;background:#1c253a;white-space:nowrap}.list-footer span:last-child{color:#e7cb91}.green-dot{width:6px;height:6px;border-radius:50%;background:#5be0a8;box-shadow:0 0 7px #5be0a8}
+.categories-dock .categories{display:flex;flex-direction:column;gap:7px;flex:1;min-height:0;overflow:auto;padding:10px 8px;scrollbar-width:thin;scrollbar-color:#7586a4 #1c2337}
+.category{white-space:normal;min-width:0;width:100%;display:flex;align-items:center;justify-content:space-between;gap:5px;border-radius:8px;padding:12px 10px;flex:0 0 auto;text-align:right;background:linear-gradient(120deg,#303953,#222d45);border:1px solid #53617e;color:#dbe3f7;font-size:12px;font-weight:700;line-height:1.55;transition:.16s}.category:hover{border-color:#ddbd83;background:#404562}.category.selected{background:linear-gradient(115deg,#655036,#38445d);border:1px solid #e6c589;color:#ffe9b6;box-shadow:0 0 13px #daba7730}.category small{border:1px solid #586580;background:#19243a;padding:2px 5px;border-radius:6px;color:#c5d1e6;font-size:10px;margin:0;flex-shrink:0}.category.selected small{color:#f9e1af;border-color:#c1a374}.aside-bottom{padding:9px;border-top:1px solid #44516e;display:flex;flex-direction:column;gap:10px}.fav-filter{width:100%;font-size:11px;border:1px solid #536182;border-radius:8px;padding:9px 6px;background:#2a344b}.aside-brand{text-align:center;color:#8e9cba;font-weight:900;font-size:11px;letter-spacing:1.1px}.aside-brand b{font-size:9px;color:#e3c68d}
+.notice{margin:0 0 10px;padding:8px 13px;font-size:11px;line-height:1.55;background:#1c2940b0;border:1px solid #3c597b;color:#bed5f0;min-height:34px}.footnote{font-size:10px;margin:10px 0 0;color:#8e9db8}.more{min-width:0;margin:8px auto;display:block;font-size:12px;padding:8px 16px}.emptystate{padding:16px 8px;font-size:12px}
+@media(max-width:950px){.app-header{height:52px;gap:9px;padding:6px 10px}.iptv-main{padding:7px 9px 13px}.iptv-workspace{grid-template-columns:minmax(315px,1.6fr) minmax(205px,.96fr) minmax(142px,.55fr);min-width:710px;gap:6px;height:calc(100dvh - 118px);min-height:280px}.dock-title{height:37px;min-height:37px;padding:0 8px}.dock-title h2{font-size:11px}.category{font-size:11px;padding:9px 7px}.player-dock{padding:6px;gap:5px}.playerbar{min-height:31px;padding:6px 8px}.screen{max-height:calc(100dvh - 190px);min-height:140px}.playeractions .btn{font-size:10px;padding:5px 2px}.intro{padding:5px;gap:3px}.intro-copy h1{font-size:11px}.intro-copy p,.intro .note{font-size:9px}.intro .stat{padding:3px 5px;min-width:45px}.intro .stat strong{font-size:13px}.intro .stat span{font-size:8px}.channel{min-height:45px;padding:3px 5px}.channel-index{font-size:11px;min-width:18px}.channel-logo{width:30px;height:32px;flex-basis:30px}.channel .chname{font-size:11px}.channel .chmeta{font-size:9px}.list-footer{padding:5px;font-size:9px}.app-header .brand{font-size:15px}.headtools .btn{padding:6px 8px;font-size:12px}.header-search .search{padding-top:7px;padding-bottom:7px;font-size:12px}.placeholder h2{font-size:16px}.placeholder .symbol{font-size:35px}.placeholder .player-idle-mark{font-size:8px}}
+@media(max-height:520px) and (orientation:landscape){.app-header{height:47px}.iptv-workspace{height:calc(100dvh - 94px);min-height:240px}.iptv-main{padding-top:5px}.notice{padding:4px 9px;min-height:27px;margin-bottom:5px}.intro{display:none}.screen{max-height:calc(100dvh - 157px);min-height:130px}.playerbar{min-height:28px;padding:5px 8px}.playeractions{padding:4px}.footnote{display:none}.channel{min-height:42px}.categories-dock .categories{padding:5px 6px;gap:5px}.categories-dock .category{padding:8px 6px;font-size:10px}.categories-dock .aside-brand{display:none}.categories-dock .aside-bottom{padding:5px}.categories-dock .fav-filter{padding:5px}}
+@media(max-width:690px) and (orientation:portrait){.landscape-note{display:block}.iptv-workspace{height:min(670px,calc(100dvh - 161px));min-width:790px;grid-template-columns:390px 230px 150px;min-height:380px}.app-header{gap:5px}.brand .tag,.desktop-only{display:none}.app-header .brand{font-size:12px;letter-spacing:-.1px}.brand:before{font-size:17px}.headtools{gap:3px}.headtools .btn{padding:7px 9px}.header-search .search{font-size:10px;padding:6px 22px 6px 4px}.header-search>span{right:5px}.screen{max-height:340px;min-height:210px}.intro{display:grid}.footnote{font-size:10px}}
+
+</style>
+</head>
+<body>
+<header class="app-header">
+ <div class="brand">ALMOGHANI <b>LIVE</b> <span class="tag">AG07</span></div>
+ <div class="header-search"><span aria-hidden="true">⌕</span><input id="search" class="search" type="search" placeholder="ابحث عن قناة أو دولة..." aria-label="البحث عن القنوات"></div>
+ <div class="headtools"><button id="refresh" class="btn small" title="تحديث القائمة">↻ <span class="desktop-only">تحديث</span></button><button id="export" class="btn small" disabled title="تصدير M3U">⇩ <span class="desktop-only">M3U</span></button><button id="adminOpen" class="btn small admin-launch">⚙ <span class="desktop-only">لوحة التحكم</span></button></div>
+</header>
+<main class="iptv-main">
+ <div class="landscape-note" role="note">↻ لعرض الشاشة كاملة على الجوال، أدر الهاتف للوضع الأفقي. ويمكنك تمرير الواجهة يمينًا ويسارًا.</div>
+ <div id="customAnnouncement" class="custom-announcement" hidden></div>
+ <div id="status" class="notice" role="status">جارٍ تحميل القنوات...</div>
+ <div class="landscape-scroll">
+ <section class="iptv-workspace" aria-label="مشغل وقائمة القنوات">
+  <div class="player-dock">
+   <div class="player">
+    <div class="playerbar"><span class="live">مباشر <span class="live-pulse"></span></span><span id="playingName">اختر قناة من القائمة</span><span class="quality-badge">HD</span></div>
+    <div class="screen"><video id="video" playsinline webkit-playsinline preload="none"></video><div id="placeholder" class="placeholder"><div class="symbol">◈</div><h2>ALMOGHANI LIVE</h2><p>اختر قناة من القائمة الوسطى لبدء العرض هنا.</p><div class="player-idle-mark">LIVE TELEVISION • AG07</div></div></div>
+    <div class="playeractions"><button id="retry" class="btn small" disabled>↻ إعادة التشغيل</button><button id="nextSource" class="btn small" disabled>⟳ بث بديل</button><a id="openSource" class="btn small" target="_blank" rel="noopener noreferrer" style="pointer-events:none;opacity:.5">↗ فتح البث</a></div>
+   </div>
+   <div class="intro"><div class="intro-copy"><h1>ALMOGHANI LIVE — <em>المشاهدة المباشرة</em></h1><p>الخليجية أولًا، ثم الأخبار والرياضة، والقنوات الأجنبية في الأخير.</p></div><div class="stats"><div class="stat"><strong id="total">—</strong><span>قناة</span></div><div class="stat"><strong id="arabicTotal">—</strong><span>عربية</span></div></div><div class="note" id="updated">القائمة تتحدث من المصدر</div><div id="featuredLine" class="featured-line" hidden><strong>★ القناة الرئيسية</strong><span id="featuredLabel"></span><button id="featuredPlay" class="btn small">▶ تشغيل</button></div></div>
+  </div>
+  <div class="channels-dock">
+   <div class="dock-title"><div class="dock-title-main"><span class="tiny-glyph">☷</span><h2 id="sectionName">القنوات الخليجية</h2></div><span id="shownCount" class="count-label"></span></div>
+   <div class="channel-list-scroller"><div id="channels" class="grid" aria-live="polite"></div><button id="loadMore" class="btn more" hidden>عرض المزيد من القنوات ↓</button></div>
+   <div class="list-footer"><span class="green-dot"></span> اختر قناة لتشغيلها <span>★ للمفضلة</span></div>
+  </div>
+  <aside class="categories-dock" aria-label="الأقسام">
+   <div class="dock-title"><div class="dock-title-main"><span class="tiny-glyph">▦</span><h2>الأقسام</h2></div></div>
+   <div id="categories" class="categories" aria-label="تصنيفات القنوات"></div>
+   <div class="aside-bottom"><button id="favFilter" class="btn fav-filter">♡ المفضلة فقط</button><span class="aside-brand">ALMOGHANI<br><b>IPTV • AG07</b></span></div>
+  </aside>
+ </section>
+ </div>
+ <div class="footnote">القنوات مأخوذة من قائمة IPTV العامة، وقد تختلف إتاحتها حسب المنطقة والجهاز. تحفظ تغييرات لوحة التحكم في متصفحك الحالي فقط.</div>
+</main>
+
+<!-- Control Studio: client-side edits persist in this browser only. -->
+<div id="adminShell" class="admin-shell" hidden>
+ <div class="admin-backdrop" id="adminBackdrop"></div>
+ <div class="admin-frame" role="dialog" aria-modal="true" aria-label="لوحة تحكم ALMOGHANI LIVE">
+  <div class="admin-head"><div><div class="admin-title">ALMOGHANI <span>CONTROL STUDIO</span> <span class="admin-tag">AG07</span></div><div class="admin-sub">إدارة القنوات • التصنيفات • التصميم • النسخ الاحتياطي</div></div><button id="adminClose" class="admin-btn admin-x" aria-label="إغلاق">×</button></div>
+  <form id="adminGate" class="admin-gate"><div class="lock-art">🔐</div><h2>دخول لوحة التحكم</h2><p>أدخل رمز اللوحة للمتابعة</p><input id="adminPin" type="password" inputmode="numeric" autocomplete="off" placeholder="••••••" maxlength="20" required><button type="submit" class="admin-btn gold" style="width:100%;margin-top:8px">دخول الإدارة</button><p id="pinMsg" role="alert"></p><div class="admin-notice warn">الرمز يمنع الوصول للوحة من الواجهة فقط؛ ولا يمثل حماية أمنية حقيقية لموقع GitHub Pages.</div></form>
+  <div id="adminWorkspace" class="admin-workspace" hidden>
+   <aside class="admin-sidebar"><div class="admin-side-logo">⚙️ لوحة إدارة البث <small>ALMOGHANI LIVE</small></div><nav class="admin-nav" aria-label="أقسام لوحة التحكم">
+    <button type="button" data-admin-tab="overview" class="active">▦ الرئيسية</button>
+    <button type="button" data-admin-tab="channels">▣ القنوات</button>
+    <button type="button" data-admin-tab="categories">☷ التصنيفات</button>
+    <button type="button" data-admin-tab="appearance">✦ المظهر</button>
+    <button type="button" data-admin-tab="sources">⇅ الاستيراد والتصدير</button>
+   </nav><div class="admin-sidebar-note">تُحفظ تغييراتك على المتصفح الحالي فقط. استخدم «تصدير نسخة JSON» للاحتفاظ بها ونقلها لجهاز آخر. لا يتم تعديل ملفات GitHub تلقائيًا.</div></aside>
+   <div class="admin-content">
+    <section class="admin-tab" data-panel="overview">
+     <div class="admin-h"><div><h2>⚡ مركز التحكم</h2><p>تحكم مباشر في محتوى وألوان وشكل موقع ALMOGHANI LIVE</p></div><span class="admin-tag">جاهز للتعديل</span></div>
+     <div class="admin-cards"><div class="admin-stat"><div class="ic">📺</div><strong id="adminTotal">0</strong><span>القنوات</span></div><div class="admin-stat"><div class="ic">🇸🇦</div><strong id="adminArabic">0</strong><span>قنوات عربية</span></div><div class="admin-stat"><div class="ic">▦</div><strong id="adminCats">0</strong><span>الأقسام</span></div></div>
+     <div class="admin-card"><h3>إجراءات سريعة</h3><div class="admin-row"><button class="admin-btn gold" data-quick="add">＋ إضافة قناة</button><button class="admin-btn" data-quick="import">⬆ استيراد M3U</button><button class="admin-btn" data-quick="appearance">✦ تغيير التصميم</button><button class="admin-btn" id="adminSave">✓ حفظ التغييرات</button></div></div>
+     <div class="admin-card"><h3>🎬 القناة الافتراضية في الواجهة</h3><p id="featuredSummary">لم يتم تحديد قناة رئيسية. يمكنك اختيارها من إدارة القنوات.</p><button class="admin-btn ghost" data-quick="channels">تحديد قناة رئيسية</button></div>
+     <div class="admin-notice">💡 تعديل الاسم والرابط والشعار وتصنيف القناة يتم من «القنوات». الترتيب الجديد: السعودية وMBC وروتانا في الخليجية، الجزيرة والعربية والحدث في الأخبار، ثم الرياضة، وأخيرًا الأجنبية.</div>
+    </section>
+    <section class="admin-tab" data-panel="channels" hidden>
+     <div class="admin-h"><div><h2>📺 إدارة القنوات</h2><p>إضافة، تعديل، حذف، اختيار قناة رئيسية والبحث بين القنوات</p></div><button class="admin-btn gold" id="adminAddChannel">＋ إضافة قناة</button></div>
+     <div class="admin-row"><label class="admin-field fill">البحث عن قناة<input id="adminSearch" type="search" placeholder="اسم القناة أو الدولة أو القسم"></label><label class="admin-field" style="min-width:155px">عرض<select id="adminChannelScope"><option value="all">جميع القنوات</option><option value="arabic">العربية فقط</option><option value="custom">المضافة يدويًا</option></select></label></div>
+     <div class="admin-row" style="margin-top:12px"><span class="admin-tag" id="adminChannelCount">—</span><button class="admin-btn red" id="adminDeleteAll">⌫ حذف جميع القنوات</button><button class="admin-btn ghost" id="adminRestoreChannels">↶ إعادة القنوات الأصلية</button></div>
+     <div class="admin-table" id="adminChannelList"></div><button class="admin-btn" id="adminShowMore">عرض المزيد من القنوات</button>
+    </section>
+    <section class="admin-tab" data-panel="categories" hidden>
+     <div class="admin-h"><div><h2>☷ إدارة التصنيفات</h2><p>إضافة قسم جديد، تعديل اسم القسم، وإخفاء الأقسام مع بقاء القنوات محفوظة</p></div></div>
+     <form id="adminAddCategoryForm" class="admin-card"><h3>إضافة تصنيف جديد</h3><div class="admin-row"><input id="newCategoryName" class="search fill" placeholder="مثال: قنوات المسلسلات البدوية" required maxlength="60"><button class="admin-btn gold" type="submit">＋ إضافة قسم</button></div></form>
+     <div id="adminCategoryRows" class="admin-table"></div>
+    </section>
+    <section class="admin-tab" data-panel="appearance" hidden>
+     <div class="admin-h"><div><h2>✦ تخصيص الواجهة</h2><p>تصميم متجاوب بألوان نيون ولمسات فضية وذهبية مع معاينة فورية</p></div></div>
+     <div class="admin-card"><h3>ألوان التصميم</h3><div class="admin-color-grid" id="adminThemes"><button class="theme-choice" data-theme="cyan">💠 أزرق نيون</button><button class="theme-choice" data-theme="gold">✦ ذهبي وفضي</button><button class="theme-choice" data-theme="purple">💜 بنفسجي</button><button class="theme-choice" data-theme="green">💚 أخضر رياضي</button></div></div>
+     <form id="adminAppearanceForm" class="admin-card"><h3>نصوص ومقاسات الموقع</h3><div class="admin-form-grid">
+      <label class="admin-field">اسم الموقع<input id="appearanceBrand" maxlength="70"></label>
+      <label class="admin-field">العنوان الرئيسي<input id="appearanceHeading" maxlength="110"></label>
+      <label class="admin-field wide">الوصف أسفل العنوان<textarea id="appearanceDescription" maxlength="450"></textarea></label>
+      <label class="admin-field wide">شريط إعلان اختياري أعلى الأقسام<textarea id="appearanceAnnouncement" maxlength="350" placeholder="اتركه فارغًا لإخفاء الشريط"></textarea></label>
+      <label class="admin-field">عرض بطاقة القناة (بكسل)<input type="range" id="appearanceCardSize" min="135" max="260" step="5"><span id="appearanceCardValue">177px</span></label>
+      <label class="admin-field">لون الإضاءة الرئيسي<input type="color" id="appearanceAccent" value="#28e5f4" style="height:45px;padding:3px"></label>
+     </div><div class="admin-row" style="margin-top:15px"><button class="admin-btn gold" type="submit">✓ حفظ المظهر</button><button class="admin-btn ghost" id="appearanceReset" type="button">استعادة التصميم الأصلي</button></div></form>
+     <div class="admin-notice">تظهر تغييرات التصميم في الصفحة مباشرة بعد الحفظ. يتطلب نشر التصميم لكل الزوار وضع ملف الإعدادات في الموقع أو تعديل الملفات على الاستضافة.</div>
+    </section>
+    <section class="admin-tab" data-panel="sources" hidden>
+     <div class="admin-h"><div><h2>⇅ استيراد وتصدير القنوات</h2><p>أضف قوائم دول عربية بصيغة M3U، أو استورد نسخة احتياطية لإعدادات اللوحة</p></div></div>
+     <form id="adminImportForm" class="admin-card"><h3>⬆ استيراد قنوات M3U</h3><div class="admin-form-grid">
+       <label class="admin-field wide">ملف M3U من جهازك<input id="adminM3uFile" type="file" accept=".m3u,.m3u8,.txt,audio/x-mpegurl"></label>
+       <label class="admin-field wide">أو رابط قائمة M3U<input id="adminM3uUrl" placeholder="https://example.com/channels.m3u" inputmode="url"></label>
+       <label class="admin-field wide">إضافة القنوات المستوردة إلى قسم محدد (اختياري)<select id="adminImportCategory"><option value="">الاحتفاظ بتصنيفات الملف</option></select></label>
+     </div><div class="admin-row" style="margin-top:14px"><button class="admin-btn gold" id="adminDoImport" type="submit">＋ استيراد القنوات</button></div><p class="progress-note" id="adminImportStatus"></p></form>
+     <div class="admin-card"><h3>⬇ نسخ القنوات والإعدادات</h3><div class="admin-row"><button class="admin-btn" id="adminExportM3u">تحميل ملف M3U مرتب</button><button class="admin-btn gold" id="adminExportBackup">تنزيل النسخة الاحتياطية JSON</button></div><p>يحتوي ملف JSON على القنوات التي أضفتها وتعديلات القنوات والتصنيفات والمظهر. استخدمه عند نقل الموقع إلى جهاز آخر.</p></div>
+     <div class="admin-card"><h3>↶ استعادة النسخة الاحتياطية</h3><label class="admin-field">اختر ملف JSON<input type="file" accept=".json,application/json" id="adminBackupFile"></label><button class="admin-btn" style="margin-top:10px" id="adminImportBackup">استعادة الإعدادات</button></div>
+     <div class="admin-card"><h3>تنظيف تعديلات المتصفح</h3><button class="admin-btn red" id="adminResetAll">⚠️ مسح جميع تعديلاتي المحلية</button><p>يعيد الموقع إلى قائمة المصدر والتصميم الافتراضي، دون تعديل القنوات الموجودة على الخادم.</p></div>
+    </section>
+   </div>
+  </div>
+ </div>
+</div>
+<div id="adminChannelModal" class="admin-modal" hidden><form id="adminChannelForm" class="admin-dialog"><h3 id="adminFormTitle">إضافة قناة جديدة</h3><input id="adminEditKey" type="hidden"><div class="admin-form-grid">
+ <label class="admin-field">اسم القناة<input id="channelName" maxlength="110" required></label>
+ <label class="admin-field">رمز الدولة<input id="channelCountry" maxlength="5" placeholder="SA, AE, EG"></label>
+ <label class="admin-field wide">رابط البث المباشر<input id="channelUrl" inputmode="url" placeholder="https://example.com/live.m3u8" required></label>
+ <label class="admin-field wide">رابط شعار القناة<input id="channelLogo" inputmode="url" placeholder="https://example.com/logo.png"></label>
+ <label class="admin-field">التصنيف<select id="channelCategory" class="admin-select"></select></label>
+ <label class="admin-field">لغة القناة<input id="channelLang" placeholder="ara"></label>
+ </div><div class="admin-row"><button class="admin-btn gold" type="submit">✓ حفظ القناة</button><button class="admin-btn ghost" type="button" id="adminCancelChannel">إلغاء</button></div></form></div>
+<div id="adminToast" class="admin-toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js" defer></script>
+<script>
+'use strict';
+const SOURCE='https://cdn.jsdelivr.net/gh/streamline-iptv/iptv-playlists@dist/index.m3u';
+const MIRROR='https://raw.githubusercontent.com/streamline-iptv/iptv-playlists/dist/index.m3u';
+const ARAB_COUNTRIES=new Set(['SA','AE','BH','KW','QA','OM','YE','IQ','JO','SY','LB','PS','EG','SD','LY','TN','DZ','MA','MR','SO','DJ','KM']);
+const GULF=new Set(['SA','AE','BH','KW','QA','OM']);
+const CATEGORY_LABELS={gulf:'🇸🇦 القنوات الخليجية',news:'📰 الأخبار',sports:'⚽ القسم الرياضي',foreign:'🌐 قنوات أجنبية',all:'📺 جميع القنوات',saudi:'🇸🇦 السعودية',religious:'🕌 الدينية',general:'📺 العامة',kids:'🧸 الأطفال',movies:'🎬 الأفلام',series:'🎭 المسلسلات',entertainment:'✨ الترفيه',documentary:'🌍 الوثائقية',music:'🎵 الموسيقى',business:'💼 الاقتصاد',culture:'📚 الثقافية',other:'📡 أخرى'};
+const ORDER=['gulf','news','sports','foreign'];
+const $=id=>document.getElementById(id);
+const state={sourceChannels:[],all:[],byCategory:new Map(),category:'gulf',search:'',favsOnly:false,visible:60,selected:null,sourceIndex:0,hls:null,loading:false,controller:null};
+let favoriteSet;
+try{favoriteSet=new Set(JSON.parse(localStorage.getItem('almoghani_favs')||'[]'));}catch{favoriteSet=new Set();}
+const getAttr=(line,key)=>{const match=line.match(new RegExp('(?:^|\\s)'+key+'="([^"]*)"','i'));return match?match[1]:'';};
+function splitInfo(line){let quoted=false;for(let i=0;i<line.length;i++){if(line[i]==='"')quoted=!quoted;if(line[i]===','&&!quoted)return [line.slice(0,i),line.slice(i+1).trim()];}return[line,''];}
+function normalize(s){return String(s||'').normalize('NFKD').replace(/[\u064B-\u065F]/g,'').toLowerCase();}
+function codeList(s){return String(s||'').toUpperCase().split(/[;,\s]+/).filter(Boolean);}
+function isArabic(language,country,name){return /(?:^|[;,\s])(ara|arb|ar)(?:$|[;,\s])/i.test(language)||codeList(country).some(c=>ARAB_COUNTRIES.has(c))||/[\u0600-\u06FF]/.test(name);}
+function regionRank(ch){const cc=codeList(ch.country);if(cc.includes('SA'))return 0;if(cc.some(c=>GULF.has(c)))return 1;if(ch.arabic)return 2;return 3;}
+function quality(url){let score=/\[Geo-blocked\]/i.test(url.name)?-50:0;if(/\[Not 24\/7\]/i.test(url.name))score-=3;let p=url.name.match(/\((\d{3,4})p\)/i);if(p)score+=Number(p[1])/1000;return score;}
+function parse(text){const byId=new Map();let meta=null,extras=[];const lines=text.split(/\r?\n/);for(let i=0;i<lines.length;i++){
+ let line=lines[i].trim();if(line.startsWith('#EXTINF:')){const [attrs,name]=splitInfo(line);const country=getAttr(attrs,'tvg-country').toUpperCase(),language=getAttr(attrs,'tvg-language');meta={id:getAttr(attrs,'tvg-id'),name:name||getAttr(attrs,'tvg-name')||(getAttr(attrs,'tvg-id').split(/[.@]/)[0]||'قناة بلا اسم'),logo:getAttr(attrs,'tvg-logo'),country,language,groups:getAttr(attrs,'group-title').split(';').map(x=>x.trim().toLowerCase()).filter(Boolean),raw:attrs};extras=[];}
+ else if(meta&&line.startsWith('#')){extras.push(line);}
+ else if(meta&&/^(?:https?:\/\/)/i.test(line)){const key=meta.id?`id:${meta.id}|${meta.country}`:`name:${normalize(meta.name)}|${meta.country}`;let ch=byId.get(key);if(!ch){ch={key,name:meta.name,logo:meta.logo,country:meta.country,language:meta.language,arabic:isArabic(meta.language,meta.country,meta.name),groups:new Set(),sources:[],sourceKeys:new Set()};byId.set(key,ch);}if(!ch.logo&&meta.logo)ch.logo=meta.logo;for(const g of meta.groups)ch.groups.add(g);if(!ch.sourceKeys.has(line)){ch.sources.push({url:line,name:meta.name,extras:[...extras]});ch.sourceKeys.add(line);}meta=null;extras=[];}
+ }
+ return Array.from(byId.values()).map(ch=>{ch.sources.sort((a,b)=>quality(b)-quality(a));delete ch.sourceKeys;if(!ch.groups.size)ch.groups.add('other');return ch;});}
+function comparator(a,b){return regionRank(a)-regionRank(b)||a.name.localeCompare(b.name,'ar',{sensitivity:'base'});}
+const GCC_ORDER=['SA','AE','KW','QA','BH','OM'];
+const BRAND_MBC=/(?:\bmbc\b|\bmbc\s*[\d+]|ام\s*بي\s*سي|إم\s*بي\s*سي)/i;
+const BRAND_ROTANA=/(?:\brotana\b|روتانا|روتانه)/i;
+function countryCode(ch){return codeList(ch.country)[0]||'';}
+function isMbc(ch){return BRAND_MBC.test(ch.name);}
+function isRotana(ch){return BRAND_ROTANA.test(ch.name);}
+function containsNews(ch){const name=normalize(ch.name).replace(/[أإآ]/g,'ا').replace(/ة/g,'ه');return ch.groups.has('news')||/(?:\bnews\b|الاخبار|اخباريه|\bal\s*jazeera\b|\baljazeera\b|الجزيره|\balarabiya\b|\bal\s*arabiya\b|العربيه|\balhadath\b|\bal\s*hadath\b|الحدث)/i.test(name);}
+function containsSports(ch){return ch.groups.has('sports')||ch.groups.has('sport')||/(?:\bsport(?:s)?\b|\bbein\b.*sport|\bssc\b|\bksasports\b|الرياضيه|الرياضية|\bfootball\b)/i.test(ch.name);}
+function channelSection(ch){
+ const groups=[...ch.groups];const manual=groups.find(x=>x.startsWith('custom_'));if(manual)return manual;
+ // The explicit section set by the control panel is respected.
+ if(groups.includes('foreign'))return 'foreign';if(groups.includes('gulf'))return 'gulf';
+ if(containsSports(ch))return 'sports';if(containsNews(ch))return 'news';
+ if(isMbc(ch)||isRotana(ch)||codeList(ch.country).some(x=>GULF.has(x)))return 'gulf';
+ // Retain other Arabic programmes in the original collection for global search and exports.
+ return ch.arabic?'arabic-other':'foreign';
+}
+function newsPriority(ch){const n=normalize(ch.name).replace(/[أإآ]/g,'ا').replace(/ة/g,'ه');if(/\baljazeera\b|\bal\s*jazeera\b|الجزيره/.test(n))return 0;if(/\balarabiya\b|\bal\s*arabiya\b|العربيه/.test(n))return 1;if(/\balhadath\b|\bal\s*hadath\b|الحدث/.test(n))return 2;return ch.arabic?3:4;}
+function gulfPriority(ch){if(countryCode(ch)==='SA'&&!isMbc(ch)&&!isRotana(ch))return 0;if(isMbc(ch))return 1;if(isRotana(ch))return 2;const idx=GCC_ORDER.indexOf(countryCode(ch));return idx>=0?idx+3:50;}
+function sportsPriority(ch){const c=countryCode(ch);return c==='SA'?0:GULF.has(c)?1:ch.arabic?2:3;}
+function sectionSort(sec,a,b){let ar=0,br=0;if(sec==='gulf'){ar=gulfPriority(a);br=gulfPriority(b);}else if(sec==='news'){ar=newsPriority(a);br=newsPriority(b);}else if(sec==='sports'){ar=sportsPriority(a);br=sportsPriority(b);}else{ar=a.arabic?0:1;br=b.arabic?0:1;}return ar-br||a.name.localeCompare(b.name,'ar',{sensitivity:'base'});}
+function buildCategories(){const cats=new Map(ORDER.map(k=>[k,[]]));for(const c of prefs.extraCats||[])cats.set(c.id,[]);
+ for(const ch of state.all){const sec=channelSection(ch);if(cats.has(sec))cats.get(sec).push(ch);}
+ for(const [sec,items] of cats)items.sort((a,b)=>sectionSort(sec,a,b));state.byCategory=cats;
+}
+function saveFavs(){try{localStorage.setItem('almoghani_favs',JSON.stringify([...favoriteSet]));}catch{}}
+function catsRender(){const target=$('categories');target.replaceChildren();const custom=(prefs.extraCats||[]).map(x=>x.id);const override=(prefs.categoryOrder||[]).filter(x=>ORDER.includes(x));const base=override.length===4?override:ORDER;const ids=[...new Set([...base,...custom])].filter(x=>state.byCategory.has(x)&&!(prefs.hiddenCats||[]).includes(x));
+ for(const id of ids){const btn=document.createElement('button');btn.className='category'+(state.category===id?' selected':'');const label=document.createElement('span');label.textContent=categoryLabel(id);const count=document.createElement('small');count.textContent=(state.byCategory.get(id)||[]).length.toLocaleString('en-US');btn.append(label,count);btn.onclick=()=>{state.category=id;state.visible=65;catsRender();const box=document.querySelector('.channel-list-scroller');if(box)box.scrollTop=0;renderChannels();};target.append(btn);}}
+function getFiltered(){const q=normalize(state.search).trim();const items=q?[...state.all].sort((a,b)=>sectionSort('news',a,b)):(state.byCategory.get(state.category)||[]);return items.filter(ch=>(!state.favsOnly||favoriteSet.has(ch.key))&&(!q||normalize(ch.name+' '+ch.country+' '+ch.language).includes(q)));}
+function channelCard(ch,index){const card=document.createElement('article');card.className='channel'+(state.selected?.key===ch.key?' playing':'');card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','تشغيل '+ch.name);
+ const num=document.createElement('span');num.className='channel-index';num.textContent=String(index).padStart(2,'0');card.append(num);
+ const logo=document.createElement('div');logo.className='channel-logo';if(ch.logo&&/^https:\/\//i.test(ch.logo)){const img=document.createElement('img');img.src=ch.logo;img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';img.onerror=()=>{img.remove();logo.textContent='📺';};logo.append(img);}else logo.textContent='📺';card.append(logo);
+ const body=document.createElement('div');body.className='chbody';const name=document.createElement('span');name.className='chname';name.textContent=ch.name;name.title=ch.name;const sub=document.createElement('span');sub.className='chmeta';sub.textContent=(ch.country||'TV')+' · '+(ch.sources.length>1?ch.sources.length+' روابط بث':'بث مباشر');body.append(name,sub);card.append(body);
+ const buttons=document.createElement('div');buttons.className='chbuttons';const play=document.createElement('button');play.className='playbtn';play.textContent='▶';play.setAttribute('aria-label','تشغيل '+ch.name);play.onclick=e=>{e.stopPropagation();playChannel(ch);};const fav=document.createElement('button');fav.className='fav'+(favoriteSet.has(ch.key)?' on':'');fav.textContent=favoriteSet.has(ch.key)?'♥':'♡';fav.setAttribute('aria-label','إضافة أو إزالة من المفضلة');fav.onclick=e=>{e.stopPropagation();favoriteSet.has(ch.key)?favoriteSet.delete(ch.key):favoriteSet.add(ch.key);saveFavs();renderChannels();};buttons.append(play,fav);card.append(buttons);
+ if(state.selected?.key===ch.key){const tag=document.createElement('span');tag.className='now-tag';tag.textContent='LIVE';card.append(tag);}
+ card.onclick=()=>playChannel(ch);card.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();playChannel(ch);}};return card;}
+function renderChannels(){const list=getFiltered(),grid=$('channels'),scroll=document.querySelector('.channel-list-scroller'),saved=scroll?.scrollTop||0;grid.replaceChildren();$('sectionName').textContent=state.search.trim()?'نتائج البحث':categoryLabel(state.category);$('shownCount').textContent=`${Math.min(list.length,state.visible).toLocaleString('en-US')} / ${list.length.toLocaleString('en-US')}`;
+ if(!list.length){const blank=document.createElement('div');blank.className='emptystate';blank.textContent=state.all.length?'لا توجد قنوات في هذا القسم أو تطابق البحث.':'جارٍ تحميل القنوات...';grid.append(blank);}else{const frag=document.createDocumentFragment();list.slice(0,state.visible).forEach((ch,i)=>frag.append(channelCard(ch,i+1)));grid.append(frag);} $('loadMore').hidden=list.length<=state.visible;if(scroll)scroll.scrollTop=saved;}
+function clearPlayback(){const video=$('video');video.pause();if(state.hls){state.hls.destroy();state.hls=null;}video.removeAttribute('src');video.load();}
+function showMsg(text){const p=$('placeholder');p.style.display='flex';p.querySelector('p').textContent=text;}
+function playChannel(ch,sourceIndex=0){if(!ch||!ch.sources.length)return;clearPlayback();state.selected=ch;state.sourceIndex=sourceIndex;const source=ch.sources[sourceIndex];const video=$('video');video.setAttribute('controls','');$('playingName').textContent=ch.name;$('retry').disabled=false;$('nextSource').disabled=ch.sources.length<2;const open=$('openSource');open.href=source.url;open.style.pointerEvents='auto';open.style.opacity='1';$('placeholder').style.display='none';renderChannels();
+ const failure=()=>{showMsg('تعذّر تشغيل '+ch.name+' في المتصفح. جرّب «بث بديل» أو «فتح رابط البث». بعض المصادر تفرض قيودًا على التشغيل الخارجي.');};
+ try{if(video.canPlayType('application/vnd.apple.mpegurl')){video.src=source.url;video.play().catch(failure);}else if(window.Hls?.isSupported()){const hls=new Hls({enableWorker:true,maxBufferLength:20,lowLatencyMode:true});state.hls=hls;hls.loadSource(source.url);hls.attachMedia(video);hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play().catch(failure));hls.on(Hls.Events.ERROR,(_ev,data)=>{if(data.fatal){if(data.type===Hls.ErrorTypes.NETWORK_ERROR)hls.startLoad();else if(data.type===Hls.ErrorTypes.MEDIA_ERROR)hls.recoverMediaError();else failure();}});}else{failure();}}catch(e){failure();}
+ video.onerror=failure;}
+function escapeM3u(s){return String(s||'').replace(/[\r\n]+/g,' ').replace(/"/g,"'");}
+function exportM3u(){if(!state.all.length)return;const lines=['#EXTM3U'];const r={gulf:0,news:1,sports:2,'arabic-other':3,foreign:4};const arr=[...state.all].sort((a,b)=>{let sa=channelSection(a),sb=channelSection(b);return (r[sa]??3)-(r[sb]??3)||sectionSort(sa,a,b);});
+ for(const ch of arr){if(!ch.sources.length)continue;const sec=channelSection(ch),group=sec==='arabic-other'?'قنوات عربية أخرى':(categoryLabel(sec)||sec).replace(/^[^\p{L}\p{N}]+/u,'').trim(),source=ch.sources[0];lines.push(`#EXTINF:-1 tvg-id="${escapeM3u(ch.key.startsWith('id:')?ch.key.slice(3).split('|')[0]:'')}" tvg-name="${escapeM3u(ch.name)}" tvg-logo="${escapeM3u(ch.logo)}" tvg-country="${escapeM3u(ch.country)}" tvg-language="${escapeM3u(ch.language)}" group-title="${escapeM3u(group)}",${escapeM3u(ch.name)}`);lines.push(...source.extras,source.url);}
+ const blob=new Blob(['\ufeff',lines.join('\n'),'\n'],{type:'audio/x-mpegurl;charset=utf-8'});const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='ALMOGHANI_LIVE_HORIZONTAL.m3u';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),30000);}
+async function loadChannels(){if(state.loading)return;state.loading=true;$('refresh').disabled=true;$('export').disabled=true;$('status').textContent='جارٍ تحميل القائمة العالمية وتصنيف القنوات...';let lastError;for(const url of [SOURCE,MIRROR]){try{const ctl=new AbortController();state.controller=ctl;const timer=setTimeout(()=>ctl.abort(),45000);let response;try{response=await fetch(url,{cache:'no-store',signal:ctl.signal});}finally{clearTimeout(timer);}if(!response.ok)throw Error('HTTP '+response.status);const raw=await response.text();if(!raw.startsWith('#EXTM3U'))throw Error('المصدر لا يحتوي على قائمة M3U صالحة');const channels=parse(raw);if(!channels.length)throw Error('القائمة فارغة');state.sourceChannels=channels;state.category='gulf';state.visible=65;state.selected=null;applySavedChanges();updateMainStats();$('updated').textContent=`تم تحليل ${raw.match(/#EXTINF:/g)?.length.toLocaleString('en-US')||'?'} رابط بث • ${channels.length.toLocaleString('en-US')} قناة مميزة • تصنيفات متعددة`;$('status').textContent='✅ القنوات جاهزة — الخليجية تبدأ بالسعودية ثم MBC وروتانا؛ الأخبار تبدأ بالجزيرة ثم العربية والحدث؛ الرياضية حسب المنطقة.';$('export').disabled=false;catsRender();renderChannels();state.loading=false;$('refresh').disabled=false;return;}catch(err){lastError=err;}}
+ applySavedChanges();$('status').textContent='تعذّر تحميل القائمة من المصدرين. افتح الملف على استضافة HTTPS (مثل GitHub Pages)، وتأكد من اتصال الإنترنت، ثم اضغط تحديث. السبب: '+(lastError?.message||'تعذّر الاتصال');state.loading=false;$('refresh').disabled=false;renderChannels();}
+$('refresh').onclick=loadChannels;$('export').onclick=exportM3u;$('retry').onclick=()=>playChannel(state.selected,state.sourceIndex);$('nextSource').onclick=()=>{if(state.selected)playChannel(state.selected,(state.sourceIndex+1)%state.selected.sources.length);};$('search').oninput=e=>{state.search=e.target.value;state.visible=65;document.querySelector('.channel-list-scroller').scrollTop=0;renderChannels();};$('favFilter').onclick=()=>{state.favsOnly=!state.favsOnly;$('favFilter').textContent=state.favsOnly?'♥ عرض المفضلة':'♡ المفضلة فقط';state.visible=65;document.querySelector('.channel-list-scroller').scrollTop=0;renderChannels();};$('loadMore').onclick=()=>{state.visible+=65;renderChannels();};
+loadChannels();
+</script>
+<script>
+'use strict';
+// ALMOGHANI LIVE — browser-side administration. This does not authenticate against a server.
+const ADMIN_STORAGE_KEY='almoghani_live_admin_v2';
+const DEFAULT_APPEARANCE={brand:'ALMOGHANI LIVE',heading:'ALMOGHANI LIVE — المشاهدة المباشرة',description:'الخليجية: السعودية ثم MBC وروتانا ثم الخليج. الأخبار: الجزيرة ثم العربية والحدث. الرياضة: السعودية ثم الخليج ثم العرب ثم الأجانب. القنوات الأجنبية أخيرًا.',announcement:'',accent:'#28e5f4',theme:'cyan',cardSize:177};
+function freshPrefs(){return {version:2,added:[],edited:{},deleted:[],hideAllSource:false,labels:{},hiddenCats:[],extraCats:[],categoryOrder:[],featuredKey:'',appearance:{...DEFAULT_APPEARANCE}};}
+function safePrefs(input){const p=freshPrefs();if(!input||typeof input!=='object'||Array.isArray(input))return p;
+ for(const k of ['added','deleted','hiddenCats','extraCats','categoryOrder'])if(Array.isArray(input[k]))p[k]=input[k];
+ if(input.edited&&typeof input.edited==='object'&&!Array.isArray(input.edited))p.edited=input.edited;
+ if(input.labels&&typeof input.labels==='object'&&!Array.isArray(input.labels))p.labels=input.labels;
+ p.hideAllSource=input.hideAllSource===true;p.featuredKey=typeof input.featuredKey==='string'?input.featuredKey:'';
+ if(input.appearance&&typeof input.appearance==='object'&&!Array.isArray(input.appearance))p.appearance={...DEFAULT_APPEARANCE,...input.appearance};
+ return p;}
+function readPrefs(){try{return safePrefs(JSON.parse(localStorage.getItem(ADMIN_STORAGE_KEY)||'null'));}catch{return freshPrefs();}}
+let prefs=readPrefs();
+let adminUnlocked=false,adminTab='overview',adminVisible=40,adminEditChannel=null;
+const node=id=>document.getElementById(id);
+const showToast=(msg,error=false)=>{const t=node('adminToast');t.textContent=msg;t.classList.toggle('error',error);t.hidden=false;clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.hidden=true,4200);};
+function saveSettings(next){try{const encoded=JSON.stringify(next);if(encoded.length>4200000)throw Error('الإعدادات كبيرة جدًا؛ استخدم قوائم أقل أو نسخة M3U.');localStorage.setItem(ADMIN_STORAGE_KEY,encoded);prefs=safePrefs(next);return true;}catch(e){showToast('تعذّر الحفظ في هذا المتصفح: '+e.message,true);return false;}}
+function modifyPrefs(cb){const next=JSON.parse(JSON.stringify(prefs));cb(next);if(!saveSettings(next))return false;applySavedChanges();refreshAdmin();return true;}
+function categoryLabel(id){return prefs.labels[id]||CATEGORY_LABELS[id]||prefs.extraCats.find(x=>x.id===id)?.label||('📡 '+id);}
+function normalizeStoredChannel(x){if(!x||typeof x!=='object')return null;const sources=Array.isArray(x.sources)?x.sources.filter(s=>s&&typeof s.url==='string'&&/^https?:\/\//i.test(s.url)).map(s=>({url:s.url,name:String(s.name||x.name||''),extras:Array.isArray(s.extras)?s.extras:[]})):[];
+ if(!sources.length)return null;const name=String(x.name||'قناة جديدة'),country=String(x.country||'').toUpperCase(),language=String(x.language||''),groups=new Set(Array.isArray(x.groups)?x.groups:[]);if(!groups.size)groups.add('other');
+ return {key:String(x.key||'custom_'+Date.now()),name,logo:String(x.logo||''),country,language,groups,arabic:isArabic(language,country,name),sources};}
+function applySavedChanges(){const deleted=new Set(prefs.deleted);const originals=prefs.hideAllSource?[]:state.sourceChannels;
+ const live=originals.filter(x=>!deleted.has(x.key)).map(x=>{const patch=prefs.edited[x.key];if(!patch)return x;return normalizeStoredChannel({...x,...patch,key:x.key})||x;});
+ const own=prefs.added.map(normalizeStoredChannel).filter(Boolean);state.all=[...live,...own];
+ state.all.sort(comparator);buildCategories();if(!state.byCategory.has(state.category))state.category='gulf';updateMainStats();catsRender();renderChannels();applyAppearance();updateFeatured();node('export').disabled=!state.all.length;}
+function updateMainStats(){node('total').textContent=state.all.length.toLocaleString('en-US');node('arabicTotal').textContent=state.all.filter(c=>c.arabic).length.toLocaleString('en-US');}
+function downloadFile(text,filename,mime='application/json;charset=utf-8'){const blob=new Blob([text],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.download=filename;a.href=url;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);}
+const defaultHeadingHTML=document.querySelector('.intro h1').innerHTML;
+function applyAppearance(){const a=prefs.appearance||DEFAULT_APPEARANCE;document.documentElement.style.setProperty('--cyan',a.accent||'#28e5f4');const min=Math.min(260,Math.max(135,Number(a.cardSize)||177));document.documentElement.style.setProperty('--card-min',min+'px');
+ const brand=(a.brand||DEFAULT_APPEARANCE.brand).trim().split(/\s+/);const brandNode=document.querySelector('header .brand');brandNode.firstChild.textContent=(brand.slice(0,-1).join(' ')||'ALMOGHANI')+' ';brandNode.querySelector('b').textContent=brand[brand.length-1]||'LIVE';
+ const title=document.querySelector('.intro h1');if(a.heading&&a.heading!==DEFAULT_APPEARANCE.heading)title.textContent=a.heading;else title.innerHTML=defaultHeadingHTML;
+ document.querySelector('.intro p').textContent=a.description||DEFAULT_APPEARANCE.description;
+ const announcement=node('customAnnouncement');announcement.textContent=a.announcement||'';announcement.hidden=!a.announcement;
+ document.querySelectorAll('.theme-choice').forEach(t=>t.classList.toggle('selected',t.dataset.theme===a.theme));}
+function updateFeatured(){const key=prefs.featuredKey;const ch=state.all.find(x=>x.key===key);node('featuredLine').hidden=!ch;if(ch)node('featuredLabel').textContent=ch.name;node('featuredSummary').textContent=ch?`تم اختيار «${ch.name}» للعرض في أعلى الصفحة. يبدأ البث عند ضغط زر التشغيل.`:'لم يتم اختيار قناة رئيسية بعد. اخترها من إدارة القنوات.';}
+function openAdmin(){node('adminShell').hidden=false;document.body.classList.add('admin-open');node('adminGate').hidden=adminUnlocked;node('adminWorkspace').hidden=!adminUnlocked;if(adminUnlocked){selectAdminTab(adminTab);refreshAdmin();}else{node('adminPin').value='';node('pinMsg').textContent='';node('adminPin').focus();}}
+function closeAdmin(){node('adminShell').hidden=true;node('adminChannelModal').hidden=true;document.body.classList.remove('admin-open');node('adminOpen').focus();}
+function selectAdminTab(name){adminTab=name;document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.adminTab===name));document.querySelectorAll('[data-panel]').forEach(s=>s.hidden=s.dataset.panel!==name);refreshAdmin();}
+function availableCategoryIds(){return [...new Set([...ORDER,...prefs.extraCats.map(x=>x.id)])];}
+function putSelectOptions(el,selected,keepDefault=false){const v=selected;el.replaceChildren();if(keepDefault){const opt=document.createElement('option');opt.value='';opt.textContent='الاحتفاظ بتصنيفات الملف';el.append(opt);}for(const c of availableCategoryIds()){const opt=document.createElement('option');opt.value=c;opt.textContent=categoryLabel(c);el.append(opt);}if([...el.options].some(o=>o.value===v))el.value=v;}
+function refreshAdmin(){if(!adminUnlocked)return;node('adminTotal').textContent=state.all.length.toLocaleString('en-US');node('adminArabic').textContent=state.all.filter(x=>x.arabic).length.toLocaleString('en-US');node('adminCats').textContent=state.byCategory.size.toLocaleString('en-US');updateFeatured();if(adminTab==='channels')renderAdminChannels();if(adminTab==='categories')renderAdminCategories();if(adminTab==='appearance')fillAppearance();if(adminTab==='sources')putSelectOptions(node('adminImportCategory'),node('adminImportCategory').value,true);}
+function channelFiltered(){const q=normalize(node('adminSearch').value).trim(),scope=node('adminChannelScope').value;const own=new Set(prefs.added.map(x=>x.key));return state.all.filter(ch=>(scope!=='arabic'||ch.arabic)&&(scope!=='custom'||own.has(ch.key))&&(!q||normalize([ch.name,ch.country,ch.language,...ch.groups].join(' ')).includes(q)));}
+function renderAdminChannels(){const list=channelFiltered(),box=node('adminChannelList');box.replaceChildren();node('adminChannelCount').textContent=`${list.length.toLocaleString('en-US')} قناة`;
+ const frag=document.createDocumentFragment();for(const ch of list.slice(0,adminVisible)){const row=document.createElement('div');row.className='admin-item';const img=document.createElement('img');img.alt='';img.loading='lazy';img.src=/^https:\/\//i.test(ch.logo)?ch.logo:'';img.onerror=()=>{img.style.visibility='hidden';};const inf=document.createElement('div');inf.className='item-info';const name=document.createElement('strong');name.textContent=ch.name;const desc=document.createElement('small');desc.textContent=`${ch.country||'—'} • ${[...ch.groups].map(categoryLabel).join('، ')} • ${ch.sources.length} بث`;inf.append(name,desc);
+ const actions=document.createElement('div');actions.className='item-actions';const edit=document.createElement('button');edit.className='admin-btn';edit.textContent='✎ تعديل';edit.onclick=()=>openChannelForm(ch);const featured=document.createElement('button');featured.className='admin-btn';featured.textContent=prefs.featuredKey===ch.key?'★ الرئيسية':'☆ رئيسية';featured.onclick=()=>{modifyPrefs(p=>p.featuredKey=ch.key);showToast('تم اختيار القناة الرئيسية');};const remove=document.createElement('button');remove.className='admin-btn red';remove.textContent='⌫ حذف';remove.onclick=()=>deleteChannel(ch);actions.append(edit,featured,remove);row.append(img,inf,actions);frag.append(row);}
+ box.append(frag);if(!list.length){const n=document.createElement('div');n.className='admin-drag-hint';n.textContent='لم يتم العثور على قنوات. أضف قناة أو استورد ملف M3U.';box.append(n);}node('adminShowMore').hidden=list.length<=adminVisible;}
+function openChannelForm(ch=null){adminEditChannel=ch;node('adminFormTitle').textContent=ch?'✎ تعديل بيانات القناة':'＋ إضافة قناة جديدة';node('adminEditKey').value=ch?.key||'';node('channelName').value=ch?.name||'';node('channelCountry').value=ch?.country||'SA';node('channelUrl').value=ch?.sources?.[0]?.url||'';node('channelLogo').value=ch?.logo||'';node('channelLang').value=ch?.language||'ara';const group=(ch?channelSection(ch):'gulf');putSelectOptions(node('channelCategory'),group);node('adminChannelModal').hidden=false;node('channelName').focus();}
+function validHttp(s){try{const u=new URL(s);return ['http:','https:'].includes(u.protocol);}catch{return false;}}
+function saveChannel(e){e.preventDefault();const key=node('adminEditKey').value,name=node('channelName').value.trim(),country=node('channelCountry').value.trim().toUpperCase(),url=node('channelUrl').value.trim(),logo=node('channelLogo').value.trim(),language=node('channelLang').value.trim(),groups=[node('channelCategory').value];
+ if(!name||!url||!validHttp(url)){showToast('أدخل اسم القناة ورابط HTTP/HTTPS صحيحًا',true);return;}if(logo&&!validHttp(logo)){showToast('رابط الشعار غير صحيح',true);return;}
+ const old=adminEditChannel;const sources=old?.sources?.length?[{url,name,extras:[]},...old.sources.filter(x=>x.url!==url)]:[{url,name,extras:[]}];const record={key:key||('custom_'+Date.now()+'_'+Math.random().toString(36).slice(2,8)),name,country,logo,language,groups,sources};
+ const ok=modifyPrefs(p=>{const idx=p.added.findIndex(c=>c.key===record.key);if(idx>=0)p.added[idx]=record;else if(key)p.edited[key]=record;else p.added.unshift(record);});if(ok){node('adminChannelModal').hidden=true;showToast(key?'تم حفظ تعديل القناة':'تمت إضافة القناة بنجاح');}}
+function deleteChannel(ch){if(!confirm(`هل تريد حذف القناة «${ch.name}» من العرض في هذا المتصفح؟`))return;modifyPrefs(p=>{const i=p.added.findIndex(x=>x.key===ch.key);if(i>=0)p.added.splice(i,1);else if(!p.deleted.includes(ch.key))p.deleted.push(ch.key);if(p.featuredKey===ch.key)p.featuredKey='';delete p.edited[ch.key];});showToast('تم حذف القناة من القائمة المحلية');}
+function renderAdminCategories(){const container=node('adminCategoryRows');container.replaceChildren();const ids=[...new Set([...ORDER,...prefs.extraCats.map(x=>x.id)])];for(const id of ids){const item=document.createElement('div');item.className='admin-item';const inf=document.createElement('div');inf.className='item-info';const title=document.createElement('strong');title.textContent=categoryLabel(id);const desc=document.createElement('small');desc.textContent=`${state.byCategory.get(id)?.length||0} قناة • ${prefs.hiddenCats.includes(id)?'مخفي':'ظاهر'}`;inf.append(title,desc);const actions=document.createElement('div');actions.className='item-actions';const rename=document.createElement('button');rename.className='admin-btn';rename.textContent='✎ الاسم';rename.onclick=()=>{const value=prompt('اكتب اسم القسم الجديد:',categoryLabel(id));if(value===null)return;if(!value.trim())return showToast('اسم القسم لا يمكن أن يكون فارغًا',true);modifyPrefs(p=>{p.labels[id]=value.trim().slice(0,70);});showToast('تم تغيير اسم القسم');};const toggle=document.createElement('button');toggle.className='admin-btn';toggle.textContent=prefs.hiddenCats.includes(id)?'◉ إظهار':'◌ إخفاء';toggle.onclick=()=>modifyPrefs(p=>{p.hiddenCats=p.hiddenCats.includes(id)?p.hiddenCats.filter(x=>x!==id):[...p.hiddenCats,id]});
+ const up=document.createElement('button');up.className='admin-btn';up.textContent='↑';up.title='رفع القسم';up.onclick=()=>moveCategory(id,-1);const down=document.createElement('button');down.className='admin-btn';down.textContent='↓';down.title='خفض القسم';down.onclick=()=>moveCategory(id,1);actions.append(rename,toggle,up,down);if(id.startsWith('custom_')){const del=document.createElement('button');del.className='admin-btn red';del.textContent='⌫';del.title='حذف القسم';del.onclick=()=>{if(!confirm(`حذف القسم «${categoryLabel(id)}»؟ القنوات لا تُحذف وستنقل إلى قسم «أخرى».`))return;modifyPrefs(p=>{p.extraCats=p.extraCats.filter(x=>x.id!==id);p.hiddenCats=p.hiddenCats.filter(x=>x!==id);p.categoryOrder=p.categoryOrder.filter(x=>x!==id);delete p.labels[id];for(const x of p.added){if(x.groups?.includes(id))x.groups=x.groups.filter(g=>g!==id).concat('other');}for(const patch of Object.values(p.edited)){if(patch.groups?.includes(id))patch.groups=patch.groups.filter(g=>g!==id).concat('other');}for(const ch of state.sourceChannels){if(ch.groups.has(id)&&!p.edited[ch.key])p.edited[ch.key]={...ch,groups:[...ch.groups].filter(g=>g!==id).concat('other')};}});};actions.append(del);}item.append(inf,actions);container.append(item);}}
+function moveCategory(id,delta){const list=[...new Set([...(prefs.categoryOrder||[]).filter(x=>ORDER.includes(x)),...ORDER,...prefs.extraCats.map(x=>x.id)])];const i=list.indexOf(id),j=i+delta;if(j<0||j>=list.length)return;[list[i],list[j]]=[list[j],list[i]];modifyPrefs(p=>p.categoryOrder=list);}
+function addCategory(e){e.preventDefault();const label=node('newCategoryName').value.trim();if(!label)return;modifyPrefs(p=>{const id='custom_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);p.extraCats.push({id,label});});node('newCategoryName').value='';showToast('تم إنشاء التصنيف');}
+function fillAppearance(){const a=prefs.appearance;node('appearanceBrand').value=a.brand||'';node('appearanceHeading').value=a.heading||'';node('appearanceDescription').value=a.description||'';node('appearanceAnnouncement').value=a.announcement||'';node('appearanceAccent').value=/^#[0-9a-fA-F]{6}$/.test(a.accent)?a.accent:'#28e5f4';node('appearanceCardSize').value=a.cardSize||177;node('appearanceCardValue').textContent=(a.cardSize||177)+'px';document.querySelectorAll('.theme-choice').forEach(x=>x.classList.toggle('selected',x.dataset.theme===a.theme));}
+function saveAppearance(e){e.preventDefault();modifyPrefs(p=>p.appearance={...p.appearance,brand:node('appearanceBrand').value.trim()||DEFAULT_APPEARANCE.brand,heading:node('appearanceHeading').value.trim()||DEFAULT_APPEARANCE.heading,description:node('appearanceDescription').value.trim()||DEFAULT_APPEARANCE.description,announcement:node('appearanceAnnouncement').value.trim(),cardSize:Number(node('appearanceCardSize').value),accent:node('appearanceAccent').value});showToast('تم تحديث المظهر في الصفحة');}
+const THEMES={cyan:'#28e5f4',gold:'#e2bf7c',purple:'#b795ff',green:'#4de59d'};
+function setTheme(t){if(!THEMES[t])return;modifyPrefs(p=>{p.appearance.theme=t;p.appearance.accent=THEMES[t];});showToast('تم تطبيق الألوان');}
+async function importM3u(e){e.preventDefault();const file=node('adminM3uFile').files?.[0],url=node('adminM3uUrl').value.trim(),status=node('adminImportStatus');if(!file&&!url){showToast('اختر ملف M3U أو الصق رابطًا',true);return;}
+ const button=node('adminDoImport');button.disabled=true;status.textContent='جارٍ قراءة القائمة...';try{let raw;if(file){if(file.size>15000000)throw Error('حجم الملف أكبر من 15MB');raw=await file.text();}else{if(!validHttp(url))throw Error('رابط القائمة غير صحيح');const ctl=new AbortController();const timeout=setTimeout(()=>ctl.abort(),30000);try{const res=await fetch(url,{signal:ctl.signal});if(!res.ok)throw Error('HTTP '+res.status);raw=await res.text();}finally{clearTimeout(timeout);}}
+ if(!/^\uFEFF?\s*#EXTM3U/.test(raw))throw Error('الملف ليس قائمة M3U صالحة');const items=parse(raw);if(!items.length)throw Error('لم يُعثر على قنوات في الملف');if(items.length>6000)throw Error('عدد القنوات كبير جدًا لهذه النسخة المحلية. استورد قوائم أصغر.');const group=node('adminImportCategory').value,existing=new Set(state.all.flatMap(x=>x.sources.map(s=>s.url))),newOnes=[];
+ for(const c of items){if(c.sources.some(x=>existing.has(x.url)))continue;const record={...c,key:'custom_'+Date.now()+'_'+newOnes.length+'_'+Math.random().toString(36).slice(2,5),groups:group?[group,...[...c.groups].filter(x=>x!==group)]:[...c.groups]};delete record.arabic;newOnes.push(record);for(const x of c.sources)existing.add(x.url);}
+ if(!newOnes.length){status.textContent='كل القنوات موجودة مسبقًا، ولم تتم إضافة قنوات مكررة.';return;}
+ if(modifyPrefs(p=>{p.added.push(...newOnes);})){status.textContent=`✅ تمت إضافة ${newOnes.length} قناة، وتم تجاهل ${items.length-newOnes.length} قناة موجودة.`;node('adminM3uFile').value='';node('adminM3uUrl').value='';showToast('تم استيراد '+newOnes.length+' قناة');}else status.textContent='تعذّر حفظ كل القنوات؛ اختصر الملف أو استخدم قوائم أصغر.';
+ }catch(err){status.textContent='⚠️ '+err.message+' — قد يمنع CORS تحميل روابط من مصادر خارجية؛ جرّب رفع ملف M3U من الجهاز.';showToast('فشل الاستيراد',true);}finally{button.disabled=false;}}
+function exportBackup(){const obj={type:'ALMOGHANI_LIVE_BACKUP',exportedAt:new Date().toISOString(),prefs};downloadFile(JSON.stringify(obj,null,2),'ALMOGHANI_LIVE_BACKUP.json');showToast('تم تصدير الإعدادات');}
+async function importBackup(){const f=node('adminBackupFile').files?.[0];if(!f){showToast('حدد ملف JSON أولًا',true);return;}try{const obj=JSON.parse((await f.text()).replace(/^\uFEFF/,''));if(obj.type!=='ALMOGHANI_LIVE_BACKUP'||!obj.prefs||!Array.isArray(obj.prefs.added))throw Error('هذا الملف ليس نسخة احتياطية صحيحة.');if(!confirm('استعادة النسخة الاحتياطية ستستبدل التعديلات المحلية الحالية. هل تريد المتابعة؟'))return;if(modifyPrefs(p=>{Object.assign(p,safePrefs(obj.prefs));})){showToast('تم استعادة الإعدادات والقنوات');node('adminBackupFile').value='';}}catch(e){showToast('تعذّر الاستعادة: '+e.message,true);}}
+// Modal, shortcuts and keyboard handling.
+node('adminOpen').addEventListener('click',openAdmin);
+node('adminClose').addEventListener('click',closeAdmin);
+node('adminBackdrop').addEventListener('click',closeAdmin);
+node('adminGate').addEventListener('submit',e=>{e.preventDefault();if(node('adminPin').value==='100100'){adminUnlocked=true;node('adminGate').hidden=true;node('adminWorkspace').hidden=false;node('adminPin').value='';selectAdminTab('overview');}else{node('pinMsg').textContent='الرمز غير صحيح.';node('adminPin').value='';}});
+document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.addEventListener('click',()=>selectAdminTab(btn.dataset.adminTab)));
+document.querySelectorAll('[data-quick]').forEach(btn=>btn.addEventListener('click',()=>{const x=btn.dataset.quick;if(x==='add'){selectAdminTab('channels');openChannelForm();}else if(x==='import')selectAdminTab('sources');else selectAdminTab(x);}));
+node('adminSave').onclick=()=>{if(saveSettings(prefs))showToast('تم حفظ التعديلات بنجاح');};
+node('adminAddChannel').onclick=()=>openChannelForm();
+node('adminChannelForm').addEventListener('submit',saveChannel);
+node('adminCancelChannel').onclick=()=>node('adminChannelModal').hidden=true;
+node('adminChannelModal').addEventListener('click',e=>{if(e.target===node('adminChannelModal'))node('adminChannelModal').hidden=true;});
+node('adminSearch').addEventListener('input',()=>{adminVisible=40;renderAdminChannels();});
+node('adminChannelScope').addEventListener('change',()=>{adminVisible=40;renderAdminChannels();});
+node('adminShowMore').onclick=()=>{adminVisible+=40;renderAdminChannels();};
+node('adminDeleteAll').onclick=()=>{if(!confirm('حذف جميع القنوات من العرض في هذا المتصفح؟ يمكن استعادة القنوات الأصلية، لكن القنوات المضافة يدويًا ستُحذف. حمّل نسخة JSON أولًا للاحتياط.'))return;modifyPrefs(p=>{p.hideAllSource=true;p.added=[];p.edited={};p.deleted=[];p.featuredKey='';});showToast('تم إفراغ قائمة القنوات المحلية');};
+node('adminRestoreChannels').onclick=()=>{if(!confirm('إعادة جميع قنوات المصدر الأصلية إلى العرض؟'))return;modifyPrefs(p=>{p.hideAllSource=false;p.deleted=[];});showToast('تمت إعادة القنوات الأصلية');};
+node('adminAddCategoryForm').addEventListener('submit',addCategory);
+node('adminAppearanceForm').addEventListener('submit',saveAppearance);
+node('appearanceReset').onclick=()=>{if(confirm('استعادة شكل وألوان الواجهة الأصلية؟')){modifyPrefs(p=>p.appearance={...DEFAULT_APPEARANCE});showToast('تمت استعادة المظهر الأصلي');}};
+node('appearanceCardSize').oninput=()=>node('appearanceCardValue').textContent=node('appearanceCardSize').value+'px';
+document.querySelectorAll('[data-theme]').forEach(btn=>btn.onclick=()=>setTheme(btn.dataset.theme));
+node('adminImportForm').addEventListener('submit',importM3u);
+node('adminExportM3u').onclick=exportM3u;
+node('adminExportBackup').onclick=exportBackup;
+node('adminImportBackup').onclick=importBackup;
+node('adminResetAll').onclick=()=>{if(!confirm('مسح جميع تعديلاتك وإعدادات اللوحة المحلية نهائيًا؟ حمّل نسخة JSON قبل المتابعة.'))return;if(modifyPrefs(p=>Object.assign(p,freshPrefs())))showToast('تمت استعادة الإعدادات الافتراضية');};
+node('featuredPlay').onclick=()=>{const c=state.all.find(x=>x.key===prefs.featuredKey);if(c){closeAdmin();playChannel(c);}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!node('adminChannelModal').hidden)node('adminChannelModal').hidden=true;else if(!node('adminShell').hidden)closeAdmin();}});
+applySavedChanges();
+
+</script>
+</body></html>
