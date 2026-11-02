@@ -9,7 +9,7 @@ on:
       - '.github/workflows/build-apk.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   android-apk:
@@ -400,3 +400,19 @@ jobs:
           name: ALMOGHANI-LIVE-APK
           path: ALMOGHANI-LIVE.apk
           if-no-files-found: error
+      - name: Publish stable HTTPS APK download in GitHub Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="almoghani-live-android"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" "ALMOGHANI-LIVE.apk" --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" "ALMOGHANI-LIVE.apk" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "ALMOGHANI LIVE - Android APK" \
+              --notes "Official GitHub Actions Android APK build from the ALMOGHANI LIVE website." \
+              --latest
+          fi
