@@ -1,0 +1,60 @@
+name: Import complete ALMOGHANI LIVE source
+
+on:
+  push:
+    paths:
+      - ".github/workflows/import-lovable-site.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: almoghani-import
+  cancel-in-progress: false
+
+jobs:
+  copy-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the destination repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Import complete design, channels, admin, and Android source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_dir="$RUNNER_TEMP/almoghani-full-source"
+          git clone --quiet --depth=1 --branch main \
+            https://github.com/9z44yj4h8m-afk/almoghani-net-22.git "$source_dir"
+          mkdir -p lovable-app
+          rsync --archive --delete \
+            --exclude='/.git/' \
+            --exclude='/.env' \
+            --exclude='/.env.*' \
+            "$source_dir/" "lovable-app/"
+          git -C "$source_dir" rev-parse HEAD > lovable-app/SOURCE-COMMIT.txt
+          test -f lovable-app/package.json
+          test -f lovable-app/src/routes/admin.tsx
+          test -f lovable-app/src/lib/channels.ts
+          test -f lovable-app/public/ar.m3u
+          test -f lovable-app/android-app/app/build.gradle
+          test -f index.html
+          test -f channels-arabic.m3u
+          echo "Successfully copied source, control dashboard, IPTV playlists and assets."
+
+      - name: Commit all imported files to the new repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- lovable-app/
+          if git diff --cached --quiet; then
+            echo "No source changes to import."
+          else
+            git commit -m "Import complete ALMOGHANI LIVE design, IPTV channels and admin source"
+            git push origin HEAD:main
+          fi
